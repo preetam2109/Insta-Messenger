@@ -8,8 +8,8 @@
 
            
             <form *ngIf="step==1"  [formGroup]="fg_company" (ngSubmit)="onNextClick()" class="mt-5 mb-4">
-                <h6 class="text-white my-0 mt-4">Welcome to Insta Messenger</h6>
-                <p class="text-white text-50 mt-2">Please sign-up to continue</p>
+                <h6 class="text-white my-0 mt-4">Welcome to Insta Messenger Application</h6>
+                <p class="text-white text-50 mt-2">Please Sign-up to continue</p>
                 <div class="form-group">
                     <label for="exampleInputName1" class="text-white">Name</label>
                     <input type="text" placeholder="Enter Name" formControlName="name" class="form-control" id="name"
@@ -86,7 +86,7 @@
                 <span>{{response.message}}</span>
               
                 <!-- <button  class="btn btn-primary btn-lg btn-block"><a class="">NEXT</a></button> -->
-                <button  class="btn  btn-lg btn-block btn-successs">NEXT</button>
+                <button class="btn  btn-lg btn-block btn-successs">NEXT</button>
                 <div class="py-2"> </div>
             </form>
 
