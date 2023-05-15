@@ -1,0 +1,197 @@
+<div class="fixed-bottom-bar">
+    <div class="osahan-home-page pb-3">
+        <div class="bg-primary p-3">
+            <div class="text-white">
+                <div class="title d-flex align-items-center ">
+                    <a class="nav-toggler" [class.drawer-open]="isDrawerOpen" id="nav-toggler"
+                        (click)="toggleNavDrawer(!isDrawerOpen)" data-target="#navbar" aria-controls="navbar">
+                        <span></span> <span></span> <span></span> <span></span>
+                    </a>
+                    <h4 class="font-weight-bold m-0 pl-5">
+                        <img class="logo" src="{{base.adminAppUrl + '/uploads/apps/logo-white.svg'}}">
+                        <!-- PANDROL RAIPUR -->
+                    </h4>
+                    <app-sidebar [isDrawerOpen]="isDrawerOpen" (drawerToggleEmitter)="toggleNavDrawer($event)">
+                    </app-sidebar>
+                </div>
+
+                <!-- app-admin-sidebar -->
+            </div>
+        </div>
+       <div class="p-3 mb-5">
+            <div class="bg-white rounded shadow mb-0 profile-details ">
+
+                <!-- <div class="modal-content"> -->
+                    <div class="modal-header">
+                        <h5 class="modal-title">Create Contact</h5>
+                    </div>
+                    <div class="m-3">
+                        <form [formGroup]="contact_form" (ngSubmit)="on_submit()">
+                            <div class="form-row">
+                              
+                                <div class="col-md-6 form-group"><label class="form-label font-weight-bold small">*Mobile</label>
+                                    <input placeholder="Enter Mobile Number" type="number" class="form-control" formControlName="mobile"
+                                        maxlength="10">
+                                    <span class="text-danger"
+                                        *ngIf="(formcontrols.mobile.touched) && formcontrols.mobile.errors?.required">*
+                                        Mobile
+                                        Required</span>
+                                    <span class="text-danger" *ngIf="formcontrols.mobile.errors?.pattern">* Mobile number is not 10
+                                        digit</span>
+                                </div>
+                    
+                                <div class="col-md-6 form-group"><label class="form-label font-weight-bold small">Name</label>
+                                    <input placeholder="Enter Name" type="text" class="form-control" formControlName="name">
+                                    <span class="text-danger"
+                                        *ngIf="(formcontrols.name.touched) && formcontrols.name.errors?.required">*Name
+                                        Required</span>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label class="form-label font-weight-bold small">Email</label>
+                                    <input placeholder="Enter Email Id" type="text" class="form-control" formControlName="email">
+                                    <!-- <span class="text-danger"
+                                        *ngIf="(formcontrols.email.touched) && formcontrols.email.errors?.required">*
+                                    Email Required</span> -->
+                                    <span class="text-danger" *ngIf="formcontrols.email.errors?.pattern">* Enter a valid email address
+                                       </span>
+                                </div>
+                           
+                                <div class="col-md-6 form-group"><label
+                                                            class="form-label font-weight-bold small">Address</label>
+                                                        <input placeholder="Enter Address" type="text" class="form-control"
+                                                            formControlName="address">
+                                                    </div>
+                                <div class="col-md-6 form-group"><label class="form-label font-weight-bold small">City</label>
+                                    <input placeholder="Enter City Name" type="text" class="form-control" formControlName="city">
+                                </div>
+                                <div class="col-md-6 form-group"><label class="form-label font-weight-bold small">State</label>
+                                    <input placeholder="Enter State Name" type="text" class="form-control" formControlName="state">
+                                </div>
+                                
+                            
+                            
+                    
+                           
+                            </div>
+                            <div class="col-md-12 pb-3">
+                    
+                                <button type="submit" class="btn btn-success mr-3" style="width: 120px;"> <i class="feather-save"></i>
+                                    Save</button>
+                                <a class="btn btn-primary " routerLink="/contact" routerLinkActive="active">
+                                    <i class="feather-list"></i>
+                                    Back To List</a>
+                                <!-- [disabled]="!login_form.valid" -->
+                            </div>
+                        </form>
+                    </div>
+                <!-- </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="fixed-bottom  osahan-menu-fotter bg-white px-3 py-2 text-center show">
+    <div class="row " *ngIf="UserDetail.role=='Admin'">
+        <div class="col" [routerLinkActive]="'active'">
+            <a [routerLink]="'/user'" class="text-dark small font-weight-bold text-decoration-none">
+                <p class="h4 m-0"><i class="feather-users"></i></p>
+              Manage user
+            </a>
+        </div>
+        <div class="col" [routerLinkActive]="'active'">
+            <a [routerLink]="'/list-qr'" class="text-dark small font-weight-bold text-decoration-none">
+                <p class="h4 m-0"><i class="feather-list"></i></p>
+                Product List
+            </a>
+        </div>
+        <div class="col bg-white rounded-circle mt-n4 px-3 py-2">
+            <div class="bg-danger rounded-circle mt-n0 shadow">
+                <a data-dismiss="modal" class="text-white small font-weight-bold text-decoration-none"
+                    [routerLink]="'/scan-qr'" [routerLinkActive]="'active'">
+                    <i class="feather-camera"></i>
+                </a>
+            </div>
+        </div>
+        <div class="col">
+            <a [routerLink]="'/generate-qr'" [routerLinkActive]="'active'"
+                class="text-dark small font-weight-bold text-decoration-none">
+                <p class="h4 m-0"><i class="feather-printer"></i></p>
+                Generate QR
+            </a>
+        </div>
+        <div class="col">
+            <a [routerLink]="'/profiles'" [routerLinkActive]="'active'"
+                class="text-dark small font-weight-bold text-decoration-none">
+                <p class="h4 m-0"><i class="feather-user"></i></p>
+                Profile
+            </a>
+        </div>
+    </div>
+    <div class="row" *ngIf="UserDetail.role =='Super Admin'">
+        <div class="col">
+            <a [routerLink]="'/list-qr'" [routerLinkActive]="'active'"
+                class="text-dark small font-weight-bold text-decoration-none">
+                <p class="h4 m-0"><i class="feather-list"></i></p>
+                Product List
+            </a>
+        </div>
+        <div class="col">
+            <a [routerLink]="'/generate-qr'" [routerLinkActive]="'active'"
+                class="text-dark small font-weight-bold text-decoration-none">
+                <p class="h4 m-0"><i class="feather-printer"></i></p>
+                Generate QR
+            </a>
+        </div>
+        <div class="col bg-white rounded-circle mt-n4 px-3 py-2">
+            <div class="bg-danger rounded-circle mt-n0 shadow">
+                <a data-dismiss="modal" class="text-white small font-weight-bold text-decoration-none"
+                    [routerLink]="'/scan-qr'" [routerLinkActive]="'active'">
+                    <i class="feather-camera"></i>
+                </a>
+            </div>
+        </div>
+        <div class="col">
+            <a [routerLink]="'/scanned-product'" [routerLinkActive]="'active'"
+                class="text-dark small font-weight-bold text-decoration-none">
+                <p class="h4 m-0"><i class="feather-list"></i></p>
+                Scanned Product
+            </a>
+        </div>
+        <div class="col">
+            <a [routerLink]="'/profiles'" [routerLinkActive]="'active'"
+                class="text-dark small font-weight-bold text-decoration-none">
+                <p class="h4 m-0"><i class="feather-user"></i></p>
+                Profile
+            </a>
+        </div>
+    </div>
+    <div class="row" *ngIf="UserDetail.role =='Super Admin'">
+        <div class="col selected">
+            <a href="/scanned-product" class="text-danger small font-weight-bold text-decoration-none">
+                <p class="h4 m-0"><i class="feather-list text-danger"></i></p>
+                Home
+            </a>
+        </div>
+
+        <div class="col bg-white rounded-circle mt-n4 px-3 py-2">
+            <div class="bg-danger rounded-circle mt-n0 shadow">
+                <a href="/scan-qr" class="text-white small font-weight-bold text-decoration-none">
+                    <i class="feather-printer"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="col">
+            <a href="/profiles" class="text-dark small font-weight-bold text-decoration-none">
+                <p class="h4 m-0"><i class="feather-user"></i></p>
+                Profile
+            </a>
+        </div>
+    </div>
+</div>
+
+
+
+

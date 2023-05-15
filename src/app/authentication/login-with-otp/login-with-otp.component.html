@@ -1,0 +1,47 @@
+<div class="osahan-forgot">
+    <div class="bg-light border-bottom p-3">
+        <a class="text-primary" [routerLink]="['/login']" [routerLinkActive]="'active'"><i class="feather-chevron-left"></i> Back</a>
+    </div>
+    <div class="p-4">
+        <!-- <h2>Reset password</h2> -->
+        <h2>Login with OTP</h2>
+        <p>Enter your Email/Mobile Number below and we'll send you an email in which your <b>One Time Paasword(OTP)</b> will be. for Insert  your OTP
+        </p>
+        <!-- <p>Enter your Email/Mobile Number below and we'll send you an email in which your <b>One Time Paasword(OTP)</b> will be. for Reset your password
+        </p> -->
+        <form [formGroup]="logginWithOTPForm" (ngSubmit)="loginWithOtp()" class="mt-5 mb-4">
+            <!-- <div class="form-group">
+                <label>Email/Mobile</label>
+                <input type="text" class="form-control" formControlName="email" id="exampleInputEmail1" placeholder="Enter your email/mobile number" aria-describedby="emailHelp">
+                <span class="text-danger" *ngIf="(f.email.touched || submitted) && f.email.errors?.required">Required Input</span>
+            </div> -->
+
+            <div class="form-group">
+                <label>Email/Mobile</label>
+                <div class="form-group-sm mb-2 input-group">
+                    <input type="text" class="form-control" name="email" formControlName="email" id="email" placeholder="Enter your email/mobile number" aria-describedby="emailHelp">
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-primary" [disabled]="ForFormExpand === true && time >0" (click)="getOTPForLogin(60)">
+                            <span *ngIf="ForFormExpand === false; else no">Get OTP</span>
+                            <ng-template #no>
+                                <span>Resend OTP<span *ngIf="resendOTP === true"> in {{display}}</span></span>
+                            </ng-template>
+                        </button>  
+                        
+                        <!-- <button type="button" class="btn btn-success" *ngIf="time >=0" (click)="getOTPForLogin(60)">Resend OTP<span *ngIf="time == 0">in {{display}}</span></button>     -->
+                    </div>
+                    <!-- <span style="width: 50px" *ngIf="display != null">{{display}}</span>   -->
+                </div>
+                <span class="text-danger" *ngIf="(f.email.touched || submitted) && f.email.errors?.required">Required Input</span>
+                <span class="text-danger" *ngIf="f.email.errors?.pattern">Enter Valid Email/Mobile Number</span>
+            </div>
+            <div class="form-group" *ngIf="ForFormExpand === true">
+                <!-- <label>Email/Mobile</label> -->
+                <input type="text" class="form-control" name="otp" formControlName="otp" placeholder="Enter your OTP Here" aria-describedby="emailHelp">
+                <span class="text-danger" *ngIf="(f.otp.touched || submitted) && f.otp.errors?.required">Required Input</span>
+                <span class="text-danger" *ngIf="f.otp.errors?.minlength">Please Fill The 6 Digit OTP</span>
+            </div>
+            <button class="btn btn-primary btn-lg btn-block" *ngIf="ForFormExpand === true">LogIn</button>
+        </form>
+    </div>
+</div>

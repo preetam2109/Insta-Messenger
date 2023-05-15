@@ -1,0 +1,83 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@ng-select/ng-select/themes/default.theme.css";
+@import '~@swimlane/ngx-datatable/index.css'; 
+/* @import '~@swimlane/ngx-datatable/themes/material.css'; */
+@import '~@swimlane/ngx-datatable/themes/dark.css';
+@import '~@swimlane/ngx-datatable/themes/bootstrap.css';
+/* @import '~@swimlane/ngx-datatable/assets/app.css'; */
+@import '~@swimlane/ngx-datatable/assets/icons.css';
+
+@import '~@swimlane/ngx-datatable/index.css';
+/* @import '~@swimlane/ngx-datatable/release/themes/material.css'; */
+@import '~@swimlane/ngx-datatable/assets/icons.css';
+
+.ffa {
+    color: #000000;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.ilt{
+    display: inline;
+}
+
+
+.card {
+    background-color:#efefef;
+    border: 1px solid black;
+    height:125px;
+    width: 268px;    
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.projectCard {
+    background-color:#efefef;
+    border: 1px solid black;
+    height:195px;
+    width: 325px;    
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.projectCardHeight{
+    max-height:194px;
+    overflow-x:hidden;
+    overflow-y:auto;
+}
+
+.cardHeader {
+    background-color: #336699; /* old blue color - 0072CC, then #0081c2*/
+    font-size:11pt;
+    font-weight:bold;
+    color:white;
+    padding:5px;
+}
+
+.cardClose {
+    color: white;    
+    font-weight:bold;
+    margin-right:5px;
+}
+
+.cardContainer {
+    width:90%;
+}
+
+.cardBody {
+    padding-left: 5px;
+}
+
+.cardBodyRight {
+    margin-left:20px;
+    margin-top:10px;
+}
+
+.cardImage {
+    height:50px;width:50px;margin-top:10px;
+}
+
+.coverImage {
+    background-image: url(/assets/img/bg-login.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}

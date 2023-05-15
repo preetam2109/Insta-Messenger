@@ -1,0 +1,58 @@
+<div class="osahan-privacy">
+    <div class="bg-primary border-bottom px-3 pt-3 pb-5">
+        <div class="text-white">
+            <div class="title d-flex align-items-center ">
+                <a class="nav-toggler" [class.drawer-open]="isDrawerOpen" id="nav-toggler"
+                    (click)="toggleNavDrawer(!isDrawerOpen)" data-target="#navbar" aria-controls="navbar">
+                    <span></span> <span></span> <span></span> <span></span>
+                </a>
+                <h4 class="font-weight-bold m-0 pl-5">About us</h4>
+                <!-- <a class="text-white font-weight-bold ml-auto" data-toggle="modal" data-target="#exampleModal"
+            (click)="preefil_filter_sort_value()">Filter</a> -->
+            </div>
+            <app-sidebar [isDrawerOpen]="isDrawerOpen" (drawerToggleEmitter)="toggleNavDrawer($event)">
+            </app-sidebar>
+
+
+        </div>
+    </div>
+    <div class=" mb-4 p-3 osahan-privacy-item">
+        <div class="osahan-privacy bg-white rounded shadow p-4 mt-n5">
+            <div id="intro" class="mb-4">
+
+                <div class="mb-3">
+                    <h2 class="h5 text-primary">Introduction</h2>
+                </div>
+
+                <p class=" text-secondary">InstaDine is an Online Food Provider headquartered in Raipur Chhattisgarh from year 2022.</p>
+            </div>
+            <div id="services" class="mb-4">
+
+                <div class="mb-3">
+                    <h2 class="h5 text-primary">About Shivam Infosoft Pvt Ltd.</h2>
+                </div>
+
+                <p>Shivam Infosoft Pvt Ltd is a Raipur-Chhattisgarh headquartered provider of IT consulting services and
+                    custom software development.</p>
+
+                    <p>Email : email@shivaminfosoft.in <br>
+                        For support : support@shivaminfosoft.in<br>
+                        Contact : +91 9131524478
+                    </p>
+                    
+            </div>
+            <br>
+            <br>
+            <hr>
+            <div style="text-align: center;" >
+                <p>
+                    © 2022 Instadine<br>
+                    All rights reserved.
+                </p>
+                <p class="" > Developed and Maintained by  
+                    <a href="http://www.shivaminfosoft.in" class="" >Shivam Infosoft Pvt Ltd. </a> 
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

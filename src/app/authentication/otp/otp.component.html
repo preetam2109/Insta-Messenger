@@ -1,0 +1,116 @@
+<!-- <div class="container" style="background-color: black">
+    <div class="osahan-forgot">
+        <div class="forgot-page">
+            <a class="toggle toggle-2 hc-nav-trigger hc-nav-1"  role="button"
+                aria-controls="hc-nav-1"><span></span></a>
+            <a [routerLink]="['/registration']" [routerLinkActive]="'active'" ><i class="feather-chevron-left"></i> Back</a>
+        </div>
+        <div class="p-4">
+        <h2 class="text-white my-0">Verify OTP</h2>
+        <p class="text-white text-50">Enter your One Time Password Here</p>
+        <form [formGroup]="otpForm" (ngSubmit)="otpValidate()" class="mt-5 mb-4">
+        <div class="form-group">
+        <label for="exampleInputEmail1">OTP</label>
+        <input type="email" class="form-control" formControlName="otp" placeholder="OTP" (keypress)="isOTP($event)" maxlength="6" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <button class="btn btn-primary btn-lg btn-block">Send</button>
+        </form>
+        </div>
+        </div>
+</div> -->
+
+<div class="osahan-verification">
+    <div class="p-3 border-bottom">
+        <a class="text-primary" [routerLink]="['/registration']" [routerLinkActive]="'active'"><i
+                class="feather-chevron-left"></i> Back</a>
+    </div>
+    <form [formGroup]="otpForm" (ngSubmit)="otpValidate()">
+        <div class="verify_number p-4">
+            <h2 class="mb-3">Verify your<br>phone number</h2>
+            <h6 class="text-black-50">Enter your OTP code here</h6>
+            <div class="row my-5 mx-0">
+                <div class="col pr-1 pl-0">
+                    <input type="text" name="otp1" id="digit-1" data-next="digit-2" formControlName="otp1"
+                        (keyup)="isOTP($event)" class="form-control form-control-lg" maxLength="1">
+                </div>
+                <div class="col px-2">
+                    <input type="text" name="otp2" id="digit-2" data-next="digit-3" data-previous="digit-1"
+                        formControlName="otp2" (keyup)="isOTP($event)" class="form-control form-control-lg"
+                        maxLength="1">
+                </div>
+                <div class="col px-2">
+                    <input type="text" name="otp3" id="digit-3" data-next="digit-4" data-previous="digit-2"
+                        formControlName="otp3" (keyup)="isOTP($event)" class="form-control form-control-lg"
+                        maxLength="1">
+                </div>
+                <div class="col pl-1 pr-0">
+                    <input type="text" name="otp4" id="digit-4" data-next="digit-5" data-previous="digit-3"
+                        formControlName="otp4" (keyup)="isOTP($event)" class="form-control form-control-lg"
+                        maxLength="1">
+                </div>
+                <div class="col pl-1 pr-0">
+                    <input type="text" name="otp5" id="digit-5" data-next="digit-6" data-previous="digit-4"
+                        formControlName="otp5" (keyup)="isOTP($event)" class="form-control form-control-lg"
+                        maxLength="1">
+                </div>
+                <div class="col pl-1 pr-0">
+                    <input type="text" name="otp6" id="digit-6" data-previous="digit-5" formControlName="otp6"
+                        (keyup)="isOTP($event)" class="form-control form-control-lg" maxLength="1">
+                </div>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block">Verify Now</button>
+        </div>
+        </form>
+        </div>
+        <!-- <script>
+            $('.digit-group').find('input').each(function () {
+                $(this).attr('maxlength', 1);
+                $(this).on('keyup', function (e) {
+                    var parent = $($(this).parent());
+
+                    if (e.keyCode === 8 || e.keyCode === 37) {
+                        var prev = parent.find('input#' + $(this).data('previous'));
+
+                        if (prev.length) {
+                            $(prev).select();
+                        }
+                    } else if ((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 65 && e.keyCode <= 90) || (e.keyCode >= 96 && e.keyCode <= 105) || e.keyCode === 39) {
+                        var next = parent.find('input#' + $(this).data('next'));
+
+                        if (next.length) {
+                            $(next).select();
+                        } else {
+                            if (parent.data('autosubmit')) {
+                                parent.submit();
+                            }
+                        }
+                    }
+                });
+            });
+        </script> -->
+        <!-- <script>
+    $('.digit-group').find('input').each(function() {
+	$(this).attr('maxlength', 1);
+	$(this).on('keyup', function(e) {
+		var parent = $($(this).parent());
+		
+		if(e.keyCode === 8 || e.keyCode === 37) {
+			var prev = parent.find('input#' + $(this).data('previous'));
+			
+			if(prev.length) {
+				$(prev).select();
+			}
+		} else if((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 65 && e.keyCode <= 90) || (e.keyCode >= 96 && e.keyCode <= 105) || e.keyCode === 39) {
+			var next = parent.find('input#' + $(this).data('next'));
+			
+			if(next.length) {
+				$(next).select();
+			} else {
+				if(parent.data('autosubmit')) {
+					parent.submit();
+				}
+			}
+		}
+	});
+});
+</script> -->

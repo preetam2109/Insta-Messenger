@@ -1,0 +1,98 @@
+<!-- (click)="onNavLinkClicked($event)" -->
+<div class="row mx-0" style="width: 100%;height: 100%;">
+    <div class="col-8 col-md-3 col-lg-3 px-0 navClas" style="max-width: 70%; height: 100%;">
+        <nav id="main-nav" class=" hc-offcanvas-nav hc-nav-1 nav-levels-overlap nav-position-left  nav-open">
+            <a class="fa fafa close"></a>
+            <div class="nav-content">
+                <h2>
+                    <img class="logo" src="{{base.adminAppUrl + '/uploads/apps/logo-white.svg'}}">
+                    <h3 style="float: right; font-size: xx-large;" aria-hidden="true"
+                        (click)="onNavLinkClicked($event)">&times;
+                    </h3>
+                </h2>
+                <ul class="second-nav">
+                    <li><a routerLink="/home" routerLinkActive="'active'"><i class="feather-home mr-2"></i>
+                            Home</a></li>
+                    <li><a [routerLink]="['/contact']"><i class="feather-list mr-2"></i>Contact</a></li>
+                    <li class="border-bottom">
+                        <div id="basicsAccordion">
+                    
+                            <div class="box  rounded bg-white mb-2">
+                                <div id="basicsHeadingOne">
+                                    <h5 class="mb-0">
+                                        <button class="shadow-none btn d-flex  align-items-center card-btn p-3 collapsed" data-toggle="collapse"
+                                            data-target="#basicsCollapseOne" aria-expanded="false" aria-controls="basicsCollapseOne"><i
+                                                class="feather-grid mr-2"></i>SMS
+                                            <!-- <span style="margin-left: 210px;"><i class="feather-chevron-down float-right "></i> </span> -->
+                                            <span class="float-right card-btn-arrow  justify-content-between arroww">
+                                                <span class="feather-chevron-down "></span>
+                                            </span>
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="basicsCollapseOne" class="collapse" aria-labelledby="basicsHeadingOne" data-parent="#basicsAccordion">
+                                    <div class="card-body border-top p-3 ">
+                                        <li><a routerLink="/sms-send" routerLinkActive="'active'"><i class="feather-list mr-2"></i>Send-SMS</a></li>
+                                        <li><a routerLink="/sms-header" routerLinkActive="'active'"><i class="feather-file mr-2"></i>Header</a></li>
+                                        <li><a [routerLink]="['/sms-template']"><i class="feather-book mr-2"></i>Template</a></li>
+                                        <li><a [routerLink]="['/api-settings']"[queryParams]="{ type: '1'}"><i class="feather-book mr-2"></i>Settings</a></li>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="border-bottom">
+                        <div id="basicsAccordionn">
+                    
+                            <div class="box  rounded bg-white mb-2">
+                                <div id="basicsHeadingOnee">
+                                    <h5 class="mb-0">
+                                        <button class="shadow-none btn d-flex  align-items-center card-btn p-3 collapsed" data-toggle="collapse"
+                                            data-target="#basicsCollapseOnee" aria-expanded="false" aria-controls="basicsCollapseOnee"><i
+                                                class="feather-grid"></i>Whatsapp
+                                            <span style="margin-left: 178px;"><i class="feather-chevron-down float-right "></i> </span>
+                                            <span class="float-right card-btn-arrow  justify-content-between arroww">
+                                                <span class="feather-chevron-down "></span>
+                                            </span>
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="basicsCollapseOnee" class="collapse" aria-labelledby="basicsHeadingOnee" data-parent="#basicsAccordionn">
+                                    <div class="card-body border-top p-3 ">
+                                        <li><a routerLink="/whatsapp-send" routerLinkActive="'active'"><i class="feather-list mr-2"></i>Send-SMS</a></li>
+                                        <li><a [routerLink]="['/api-settings']" [queryParams]="{ type: '2'}"><i class="feather-book mr-2"></i>Settings</a></li>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a [routerLink]="['/employees']"><i class="feather-users mr-2"></i>Users</a></li>
+                    <li><a [routerLink]="['/profiles']"><i class="feather-user mr-2"></i>Profile</a></li>
+
+                </ul>
+                <ul class="bottom-nav">
+                    <li class="email">
+                        <a class="text-danger" routerLink="/home" routerLinkActive="'active'">
+                            <p class="h5 m-0"><i class="feather-home text-danger"></i></p>
+                            Home
+                        </a>
+                    </li>
+                    <li class="github">
+                        <a [routerLink]="['/about_us']" [routerLinkActive]="'active'">
+                            <p class="h5 m-0"><i class="feather-message-circle"></i></p>
+                            About us
+                        </a>
+                    </li>
+                    <li class="ko-fi">
+                        <a (click)="logout()">
+                            <p class="h5 m-0"><i class="feather-log-out"></i></p>Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </nav>
+    </div>
+    <div class="col-4 col-md-9 col-lg-9 secondDiv" (click)="onNavLinkClicked($event)">
+    </div>
+</div>

@@ -1,0 +1,190 @@
+
+<!-- (click)="onNavLinkClicked($event)" -->
+<div class="row mx-0" style="width: 100%;height: 100%;">
+    <div class="col-8 col-md-3 col-lg-3 px-0 navClas" style="max-width: 70%; height: 100%;">
+        <nav id="main-nav" class=" hc-offcanvas-nav hc-nav-1 nav-levels-overlap nav-position-left  nav-open">
+            <a class="fa fafa close"></a>
+            <div class="nav-content " *ngIf="UserDetail.role=='Admin'">
+                <h2>
+                    <img class="logo" src="{{base.adminAppUrl + '/uploads/apps/logo-white.svg'}}">
+                    <h3 style="float: right; font-size: xx-large;" aria-hidden="true"
+                        (click)="onNavLinkClicked($event)">&times;
+                    </h3>
+                </h2>
+                <ul class="second-nav">
+                    <li><a routerLink="/admin-dashboard" routerLinkActive="'active'"><i class="feather-home mr-2"></i>
+                            Home</a></li>
+                    <li><a [routerLink]="['/list-qr']"><i class="feather-list mr-2"></i>Product List</a></li>
+                    <li><a routerLink="/generate-qr" routerLinkActive="'active'"><i
+                                class="feather-printer mr-2"></i>Generate QR</a></li>
+                    <li><a [routerLink]="['/scan-qr']"><i class="feather-camera mr-2"></i>Scan QR</a></li>
+                    <li><a [routerLink]="['/scanned-product']"><i class="feather-list mr-2"></i>Scanned Product
+                            Report</a></li>
+                    <li><a routerLink="/user" routerLinkActive="'active'"><i class="feather-users mr-2"></i>Manage
+                            User</a></li>
+                    <li class="border-bottom">
+                        <div id="basicsAccordion">
+
+                            <div class="box  rounded bg-white mb-2">
+                                <div id="basicsHeadingOne">
+                                    <h5 class="mb-0">
+                                        <button
+                                            class="shadow-none btn d-flex  align-items-center card-btn p-3 collapsed"
+                                            data-toggle="collapse" data-target="#basicsCollapseOne"
+                                            aria-expanded="false" aria-controls="basicsCollapseOne"><i
+                                                class="feather-grid mr-2"></i>Master
+                                            <!-- <span style="margin-left: 100px;"><i class="feather-chevron-down float-right "></i> </span> -->
+                                            <span class="float-right card-btn-arrow  justify-content-between arroww">
+                                                <span class="feather-chevron-down "></span>
+                                            </span>
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="basicsCollapseOne" class="collapse" aria-labelledby="basicsHeadingOne"
+                                    data-parent="#basicsAccordion">
+                                    <div class="card-body border-top p-3 ">
+                    <li><a routerLink="/rail-section-list" routerLinkActive="'active'"><i class="feather-list mr-2"></i>
+                            Rail Section List</a></li>
+                    <li><a routerLink="/rail-grade_list" routerLinkActive="'active'"><i
+                                class="feather-file mr-2"></i>Rail Grade List</a></li>
+                    <li><a [routerLink]="['/welding-technique-list']"><i class="feather-book mr-2"></i>Welding Technique
+                            List</a></li>
+            </div>
+    </div>
+</div>
+
+<!-- <div class="box  rounded bg-white mb-2">
+                        <div id="basicsHeadingTwo">
+                        <h5 class="mb-0">
+                        <button class="shadow-none btn btn-block d-flex justify-content-between card-btn p-3 collapsed" 
+                        data-toggle="collapse" data-target="#basicsCollapseTwo" aria-expanded="false" aria-controls="basicsCollapseTwo">
+                        Can I add/upgrade my plan at any time?
+                        <span class="card-btn-arrow">
+                        <span class="feather-chevron-down"></span>
+                        </span>
+                        </button>
+                        </h5>
+                        </div>
+                        <div id="basicsCollapseTwo" class="collapse" aria-labelledby="basicsHeadingTwo" data-parent="#basicsAccordion" >
+                        <div class="card-body border-top p-3">
+                            <li><a routerLink="/admin-dashboard" routerLinkActive="'active'"><i class="feather-home mr-2"></i> Home</a></li>
+                            <li><a  routerLink="/user" routerLinkActive="'active'"><i class="feather-users mr-2"></i>Manage User</a></li>
+                             <li><a [routerLink]="['/list-qr']"><i class="feather-list mr-2"></i>Product List</a></li>
+                        </div>
+                        </div>
+                        </div> -->
+</div>
+</li>
+<li><a [routerLink]="['/profiles']"><i class="feather-user mr-2"></i>Profile</a></li>
+
+</ul>
+<ul class="bottom-nav">
+    <li class="email">
+        <a class="text-danger" routerLink="/admin-dashboard" routerLinkActive="'active'">
+            <p class="h5 m-0"><i class="feather-home text-danger"></i></p>
+            Home
+        </a>
+    </li>
+    <li class="github">
+        <a [routerLink]="['/about_us']" [routerLinkActive]="'active'">
+            <p class="h5 m-0"><i class="feather-message-circle"></i></p>
+            About us
+        </a>
+    </li>
+    <li class="ko-fi">
+        <a (click)="logout()">
+            <p class="h5 m-0"><i class="feather-log-out"></i></p>Logout
+        </a>
+    </li>
+</ul>
+</div>
+
+
+
+
+
+
+
+<div class="nav-content " *ngIf="UserDetail.role =='Generator'">
+    <h2>
+        <!-- PANDROL RAIPUR -->
+        <img class="logo" src="{{base.adminAppUrl + '/uploads/apps/logo-white.svg'}}">
+        <h3 style="float: right; font-size: xx-large;" aria-hidden="true" (click)="onNavLinkClicked($event)">&times;
+        </h3>
+    </h2>
+    <ul class="second-nav">
+        <li><a routerLink="/scanned-product" routerLinkActive="'active'"><i class="feather-home mr-2"></i> Home</a></li>
+        <li><a routerLink="/generate-qr" routerLinkActive="'active'"><i class="feather-printer mr-2"></i>
+                Generate QR</a></li>
+        <li><a [routerLink]="['/list-qr']"><i class="feather-grid mr-2"></i>Batch list</a></li>
+        <li><a [routerLink]="['/scanned-product']"><i class="feather-grid mr-2"></i>Scanned Product</a></li>
+
+
+        <li><a [routerLink]="['/scan-qr']"><i class="feather-grid mr-2"></i>Scan QR</a></li>
+        <li>
+            <a [routerLink]="['/profiles']"><i class="feather-user mr-2"></i> Profile</a>
+        </li>
+    </ul>
+    <ul class="bottom-nav">
+        <li class="email">
+            <a class="text-danger" routerLink="/scanned-product" routerLinkActive="'active'">
+                <p class="h5 m-0"><i class="feather-home text-danger"></i></p>
+                Home
+            </a>
+        </li>
+        <li class="github">
+            <a [routerLink]="['/about_us']" [routerLinkActive]="'active'">
+                <p class="h5 m-0"><i class="feather-message-circle"></i></p>
+                About us
+            </a>
+        </li>
+        <li class="ko-fi">
+            <a (click)="logout()">
+                <p class="h5 m-0"><i class="feather-log-out"></i></p>Logout
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="nav-content " *ngIf="UserDetail.role =='Scanner'">
+    <h2>
+        <!-- PANDROL RAIPUR -->
+        <img class="logo" src="{{base.adminAppUrl + '/uploads/apps/logo-white.svg'}}">
+        <h3 style="float: right; font-size: xx-large;" aria-hidden="true" (click)="onNavLinkClicked($event)">&times;
+        </h3>
+    </h2>
+    <ul class="second-nav">
+        <li><a routerLink="/scanned-product" routerLinkActive="'active'"><i class="feather-home mr-2"></i> Home</a></li>
+        <li><a routerLink="/scan-qr" routerLinkActive="'active'"><i class="feather-printer mr-2"></i>
+                Scan QR</a></li>
+        <li>
+            <a [routerLink]="['/profiles']"><i class="feather-user mr-2"></i> Profile</a>
+        </li>
+    </ul>
+    <ul class="bottom-nav">
+        <li class="email">
+            <a class="text-danger" routerLink="/scanned-product" routerLinkActive="'active'">
+                <p class="h5 m-0"><i class="feather-home text-danger"></i></p>
+                Home
+            </a>
+        </li>
+        <li class="github">
+            <a [routerLink]="['']" [routerLinkActive]="'active'">
+                <p class="h5 m-0"><i class="feather-message-circle"></i></p>
+                About us
+            </a>
+        </li>
+        <li class="ko-fi">
+            <a (click)="logout()">
+                <p class="h5 m-0"><i class="feather-log-out"></i></p>Logout
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+
+</nav>
+</div>
+<div class="col-4 col-md-9 col-lg-9 secondDiv" (click)="onNavLinkClicked($event)">
+</div>
+</div>

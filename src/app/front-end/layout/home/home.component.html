@@ -1,0 +1,22 @@
+<div [innerHtml]="base.redirect_to_module(UserDetail.role)"> </div>
+<span class="fixed-bottom-bar">
+    <div class="osahan-home-page pb-3">
+        <div class="bg-primary p-3">
+            <div class="text-white">
+                <div class="title d-flex align-items-center ">
+                    <a class="nav-toggler" [class.drawer-open]="isDrawerOpen" id="nav-toggler"
+                        (click)="toggleNavDrawer(!isDrawerOpen)" data-target="#navbar" aria-controls="navbar">
+                        <span></span> <span></span> <span></span> <span></span>
+                    </a>
+                    <h4 class="font-weight-bold m-0 pl-5">
+                        <img class="logo" src="{{base.adminAppUrl + '/uploads/apps/logo-white.svg'}}">
+                    </h4>
+                    <a class="text-white font-weight-bold ml-auto" data-toggle="modal" data-target="#exampleModal"
+                        (click)="preefil_filter_sort_value()">Filter</a>
+                </div>
+                <app-sidebar [isDrawerOpen]="isDrawerOpen"
+                    (drawerToggleEmitter)="toggleNavDrawer($event)"></app-sidebar>
+
+            </div>
+        </div>
+    </div>

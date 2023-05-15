@@ -1,0 +1,53 @@
+
+:host {
+	position: fixed;
+	display: block;
+	top: 0px;
+	left: 0;
+	height: 100vh;
+	width: 0;
+  transition: 0.3s ease;
+  overflow: hidden;
+  opacity: 0.3;
+  touch-action: none;
+  position: fixed; 
+	height: 100%;
+	z-index: 9999;
+}
+.navClas{
+  background-color: white;
+  width: 20%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.secondDiv{
+  width: 80%;
+}
+:host.drawer-open {
+  width: 100%;
+  opacity: 1;
+}
+/* :host.drawer-open {
+  width: 20%;
+
+  width: 70vw;
+  opacity: 2;
+} */
+.arroww{
+ margin-left: 210px;
+}
+@media screen and (max-width: 676px) {
+  :host.drawer-open {
+    /* width: 70%; */
+    width: 100%;
+  }
+  .navClas{
+    width: 70%;
+  }
+
+  .secondDiv{
+    width: 30%;
+  }
+  .arroww{
+    margin-left: 120px;
+   }
+}

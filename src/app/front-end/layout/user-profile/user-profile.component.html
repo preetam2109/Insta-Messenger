@@ -1,0 +1,922 @@
+<div class="fixed-bottom  osahan-menu-fotter bg-white px-3 py-2 text-center show">
+    <div class="row " *ngIf="UserDetail.role=='Admin'">
+        <div class="col" [routerLinkActive]="'active'">
+            <a [routerLink]="'user'" class="text-dark small font-weight-bold text-decoration-none">
+                <p class="h4 m-0"><i class="feather-users"></i></p>
+              Manage user
+            </a>
+        </div>
+        <div class="col" [routerLinkActive]="'active'">
+            <a [routerLink]="'list-qr'" class="text-dark small font-weight-bold text-decoration-none">
+                <p class="h4 m-0"><i class="feather-list"></i></p>
+                Product List
+            </a>
+        </div>
+        <div class="col bg-white rounded-circle mt-n4 px-3 py-2">
+            <div class="bg-danger rounded-circle mt-n0 shadow">
+                <a data-dismiss="modal" class="text-white small font-weight-bold text-decoration-none"
+                    [routerLink]="'/scan-qr'" [routerLinkActive]="'active'">
+                    <i class="feather-camera"></i>
+                </a>
+            </div>
+        </div>
+        <div class="col">
+            <a [routerLink]="'/generate-qr'" [routerLinkActive]="'active'"
+                class="text-dark small font-weight-bold text-decoration-none">
+                <p class="h4 m-0"><i class="feather-printer"></i></p>
+                Generate QR
+            </a>
+        </div>
+        <div class="col">
+            <a [routerLink]="'profile'" [routerLinkActive]="'active'"
+                class="text-dark small font-weight-bold text-decoration-none">
+                <p class="h4 m-0"><i class="feather-user"></i></p>
+                Profile
+            </a>
+        </div>
+    </div>
+    <div class="row" *ngIf="UserDetail.role =='Generator'">
+        <div class="col">
+            <a [routerLink]="'/list-qr'" [routerLinkActive]="'active'"
+                class="text-dark small font-weight-bold text-decoration-none">
+                <p class="h4 m-0"><i class="feather-list"></i></p>
+                Product List
+            </a>
+        </div>
+        <div class="col">
+            <a [routerLink]="'generate-qr'" [routerLinkActive]="'active'"
+                class="text-dark small font-weight-bold text-decoration-none">
+                <p class="h4 m-0"><i class="feather-printer"></i></p>
+                Generate QR
+            </a>
+        </div>
+        <div class="col bg-white rounded-circle mt-n4 px-3 py-2">
+            <div class="bg-danger rounded-circle mt-n0 shadow">
+                <a data-dismiss="modal" class="text-white small font-weight-bold text-decoration-none"
+                    [routerLink]="'/scan-qr'" [routerLinkActive]="'active'">
+                    <i class="feather-camera"></i>
+                </a>
+            </div>
+        </div>
+        <div class="col">
+            <a [routerLink]="'/scanned-product'" [routerLinkActive]="'active'"
+                class="text-dark small font-weight-bold text-decoration-none">
+                <p class="h4 m-0"><i class="feather-list"></i></p>
+                Scanned Product
+            </a>
+        </div>
+        <div class="col">
+            <a [routerLink]="'profile'" [routerLinkActive]="'active'"
+                class="text-dark small font-weight-bold text-decoration-none">
+                <p class="h4 m-0"><i class="feather-user"></i></p>
+                Profile
+            </a>
+        </div>
+    </div>
+    <div class="row" *ngIf="UserDetail.role =='Scanner'">
+        <div class="col selected">
+            <a href="/scanned-product" class="text-danger small font-weight-bold text-decoration-none">
+                <p class="h4 m-0"><i class="feather-list text-danger"></i></p>
+                Home
+            </a>
+        </div>
+
+        <div class="col bg-white rounded-circle mt-n4 px-3 py-2">
+            <div class="bg-danger rounded-circle mt-n0 shadow">
+                <a href="/scan-qr" class="text-white small font-weight-bold text-decoration-none">
+                    <i class="feather-printer"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="col">
+            <a href="/profile" class="text-dark small font-weight-bold text-decoration-none">
+                <p class="h4 m-0"><i class="feather-user"></i></p>
+                Profile
+            </a>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="fixed-bottom-bar " data-dismiss="modal">
+    <div class="osahan-profile">
+        <div class="bg-primary border-bottom px-3 pt-3 pb-5 d-flex align-items-center">
+            <!-- <a class="toggle togglew toggle-2" href="#"><span></span></a> -->
+            <!-- <h4 class="text-white font-weight-bold ml-auto">Profile</h4> -->
+            <a data-toggle="modal" data-target="#exampleModalAdmin" class="nav-toggler text-white font-weight-bold  float-right"
+                *ngIf="UserDetail.role =='Admin'">
+                <span></span><span></span><span></span><span></span>
+            </a>
+            <a data-toggle="modal" data-target="#exampleModalGenerator"
+                class="nav-toggler text-white font-weight-bold  float-right" *ngIf="UserDetail.role =='Generator'">
+                <span></span><span></span><span></span><span></span>
+            </a>
+            <a data-toggle="modal" data-target="#exampleModalScanner"
+                class="nav-toggler text-white font-weight-bold  float-right" *ngIf="UserDetail.role =='Scanner'">
+                <span></span><span></span><span></span><span></span>
+            </a>
+            <!-- [class.drawer-open]="isDrawerOpen" id="nav-toggler" 
+                    (click)="toggleNavDrawer(!isDrawerOpen)" data-target="#navbar" aria-controls="navbar" -->
+        
+            <h4 class="text-white font-weight-bold m-0 pl-5 font_head">
+                <!-- PANDROL RAIPUR -->
+                <!-- <img class="logo" src="{{base.adminAppUrl + '/uploads/apps/logo-white.svg'}}"> -->
+            </h4>
+        
+            <!-- <app-sidebar [isDrawerOpen]="isDrawerOpen" (drawerToggleEmitter)="toggleNavDrawer($event)"></app-sidebar> -->
+            <!-- <app-admin-sidebar [isDrawerOpen]="isDrawerOpen" (drawerToggleEmitter)="toggleNavDrawer($event)"></app-admin-sidebar> -->
+        
+        
+            <!-- <a class="text-white font-weight-bold ml-auto" data-toggle="modal" data-target="#exampleModalnavbar"
+                href="#">Filter</a> mt-n5 -->
+        </div>
+
+
+        <div class="p-3  osahan-profile">
+            <div class="bg-white rounded shadow ">
+                <div class=" align-items-center border-bottom pt-3">
+                    <div style="width: 100%;" class="border-bottom">
+                        <div style="width: 100%;">
+                            <div style="width: 120px;height: 120px; margin: auto; padding: auto;position: relative;">
+                                <img src="{{base.userImgUrl}}/{{result.photo}}" class="rounded-circle  "
+                                    style="width:100%; height:100%; border:1px solid #dddddb ;">
+                                <button class="  btn-outline-light  " (click)="file.click()"
+                                    style="border-color: transparent;background-color:#dddddb;
+                           bottom:-5px; right: 10px; z-index: 999; position: absolute;border-radius: 50%; height: 30px; width: 30px; ">
+                                    <i class="feather-camera text-success " style="padding: 0;color: #3c3cfa;"></i>
+                                </button>
+                                <input name="thumbnail" id="thumbnail" type="file"
+                                    accept="image/png, image/jpeg, image/jpg" #file (change)="fileChangeEvent($event)"
+                                    style="display:none ;">
+                            </div>
+                        </div>
+                        <div style="width: 100%;">
+                            <h3 class="mb-3 mt-4 font-weight-bold text-center" style="margin: auto; padding: auto;">
+                                {{result.name}}
+                            </h3>
+                        </div>
+                    </div>
+                    <table class="table mb-0">
+                        <tr style="width:100%;">
+                            <td>
+                                <div class="media align-items-center">
+                                    <div class="media-body">
+                                        <span class="m-0">Mobile Number:</span>
+                                        <span class="  p-3 font-weight-bold">{{result.mobile}}</span>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td style="width:60px;">
+                                <div class="input-group-append float-right ffa"><a id="button-addon2" type="button" (click)="open_mobile_modal(1,modalDefault_modal)"
+                                        data-toggle="modal" data-target="#exampleModal" class=""><i
+                                            class="feather-edit text-success"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="table mb-0">
+                        <tr style="width:100%;">
+                            <td>
+                                <div class="media align-items-center">
+                                    <div class="media-body">
+                                        <span class="m-0">Email:</span>
+                                        <span class="ffa  font-weight-bold p-3 "> {{result.email}}</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <!-- <td style="width:60px;">
+                                <div class="input-group-append float-right ffa"><a id="button-addon2" type="button" (click)="open_mobile_modal(2,modalDefault_modal)"
+                                        data-toggle="modal" data-target="#exampleModal" class=""><i
+                                            class="feather-edit text-success"></i></a>
+                                </div>
+                              
+                            </td> -->
+                            <td style="width:60px;">
+                                <div class="input-group-append float-right ffa"><a id="button-addon2" type="button" (click)="open_mobile_modal(2,modalDefault_modal)"
+                                        data-toggle="modal" data-target="#exampleModal" class=""><i
+                                            class="feather-edit text-success"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="bg-white rounded  mt-0 profile-details">
+                    <a type="button" data-toggle="modal" data-target="#paycard"
+                        class=" btn  d-flex w-100 align-items-center border-bottom p-3">
+                        <div class="left mr-3">
+                            <h6 class="  font-weight-bold mb-1 text-dark">Change Password</h6>
+                            <!-- <p class="small text-muted m-0">Add a credit or debit card</p> -->
+                        </div>
+                        <div class="right ml-auto">
+                            <h6 class="font-weight-bold m-0"><i class="feather-chevron-right"></i></h6>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="bg-white rounded shadow mt-3 profile-details">
+  
+         
+                </div>
+            </div>
+
+           
+        </div>
+
+        <div class="modal fade" id="paycard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <form [formGroup]="changePasswordForm">
+                            <div class="form-row">
+                                <div class="col-md-12 form-group">
+                                    <label class="form-label font-weight-bold small">Old Password</label>
+                                        <input placeholder="Enter Old Password" type="text" class="form-control"
+                                            formControlName="old_password" id="old_password">
+                                        <span class="text-danger"
+                                            *ngIf="(f.old_password.touched || submitted ) && f.old_password.errors?.required">Password
+                                            Required</span>
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <label class="form-label font-weight-bold small">New Password</label>
+                                    <input placeholder="Enter New Password" type="password" class="form-control"
+                                        formControlName="new_password" id="new_password">
+                                    <span class="text-danger"
+                                        *ngIf="(f.new_password.touched || submitted ) && f.new_password.errors?.required">Password
+                                        Required</span>
+                                    <span class="text-danger"
+                                        *ngIf="f.new_password.touched  && f.new_password.errors?.pattern">
+                                        Enter Valid Password</span>
+
+                                </div>
+
+                                <div class="col-md-12 form-group">
+                                    <label class="form-label font-weight-bold small">Confirm Password</label>
+                                    <input placeholder="Enter Confirm Password" type="password" class="form-control"
+                                        formControlName="Confirm_password" id="Confirm_password">
+                                    <span class="text-danger"
+                                        *ngIf="(f.Confirm_password.touched || submitted ) && f.Confirm_password.errors?.required">Password
+                                        Required</span>
+                                    <span class="text-danger"
+                                        *ngIf="f.Confirm_password.touched  && f.Confirm_password.errors?.pattern">
+                                        Enter Valid Password</span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer p-0 border-0">
+                        <div class="col-6 m-0 p-0">
+                            <button type="button" class="btn border-top btn-lg btn-block"
+                                data-dismiss="modal">Close</button>
+                        </div>
+                        <div class="col-6 m-0 p-0">
+                            <button type="button" class="btn btn-primary btn-lg btn-block"
+                                (click)="change_password()">Save changes</button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+      
+
+            <ng-template #modalDefault_modal let-modal class="modal  " style="z-index: 1040;" id="#modalDefault" tabindex="-1"
+                role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <form [formGroup]="form_change_mobile" 
+                    [style]=" is_edit_mobile== true ? 'display:block' : 'display:none'">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">{{is_edit_mobile== true ? 'Update Mobile Number' :
+                                    'Update Email ID'}} </h5>
+                                <button type="button" class="close" data-dismiss="modal" (click)="modal.dismiss('Cross click')"
+                                    aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-row">
+                                    <div class="col-md-12 form-group"
+                                        [style]=" is_edit_mobile== true ? 'display:block' : 'display:none'">
+                                        <label class="form-label">Mobile Number
+                                        </label>
+                                        <input placeholder="Mobile Number" type='text' class="form-control" name="mobile_Number"
+                                            formControlName="mobile_Number" id="mobile_Number">
+                                        <div *ngIf="form_change_mobile.get('mobile_Number')?.invalid && 
+                                                 form_change_mobile.get('mobile_Number')?.errors && 
+                                                 (form_change_mobile.get('mobile_Number')?.dirty || form_change_mobile.get('mobile_Number')?.touched)">
+                                            <small class="text-danger"
+                                                *ngIf="form_change_mobile.get('mobile_Number')?.hasError('required')">
+                                                This field is required.
+                                            </small>
+                                            <!-- <small class="text-danger"
+                    *ngIf="formGroup.get('toDo').hasError('minlength')">
+                    The minimum length for this field is {{formGroup.get('toDo').errors.minlength.requiredLength}} characters.
+                </small>
+                <small class="text-danger"
+                    *ngIf="formGroup.get('toDo').hasError('maxlength')">
+                    The maximum length for this field is {{formGroup.get('toDo').errors.maxlength.requiredLength}} characters.
+                </small> -->
+                                        </div>
+
+                                     <!-- <span class="text-danger"
+                                     *ngIf="(f.mobile_Number.touched || submitted ) && f.mobile_Number.errors?.required">Mobile Number
+                                     Required</span> -->
+                                </div>
+                            </div>  
+                    </div>
+                    <div class="modal-footer p-0 border-0">
+                        <div class="col-6 m-0 p-0">
+                            <button type="button" class="btn border-top btn-lg btn-block"
+                                data-dismiss="modal"(click)="modal.dismiss('Cross click')">Close</button>
+                        </div>
+                        <div class="col-6 m-0 p-0">
+                            <button type="submit" class="btn btn-primary btn-lg btn-block" id="btnGetOtp"
+                            data-dismiss="modal" [disabled]="!form_change_mobile.valid" (click)="get_otp(modalDefault)">Get OTP</button>                          
+                                <!--data-toggle="modal" data-target="#verifyotp" <div class="input-group-append float-right ffa"><a id="button-addon2" type="button"
+                                    data-toggle="modal" data-target="#exampleModal" class=""><i
+                                        class="feather-edit text-success"></i></a>
+                            </div> [disabled]="f.mobile_Number.valid === false"-->
+                        </div>
+                        
+                    </div>
+             
+                </div>
+            </div>
+            </form>
+
+            <form  [formGroup]="form_change_email" (ngSubmit)="get_otp(modalDefault)" [style]=" is_edit_mobile== false ? 'display:block' : 'display:none'">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Update Email ID</h5>
+                            <button type="button" class="close" data-dismiss="modal"(click)="modal.dismiss('Cross click')" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>                        
+                        </div>
+                        <div class="modal-body">                       
+                                <div class="form-row">
+                                    <div class="col-md-12 form-group">
+                                        <label class="form-label">Email ID
+                                        </label>
+                                        <input placeholder="Enter Email ID" type='text' class="form-control" name="email"
+                                         formControlName="email" id="email"  >
+                                         <div *ngIf="form_change_email.get('email')?.invalid && 
+                                         form_change_email.get('email')?.errors && 
+            (form_change_email.get('email')?.dirty || form_change_email.get('email')?.touched)">
+        <small class="text-danger"
+            *ngIf="form_change_email.get('email')?.hasError('required')">
+            This field is required.
+        </small>
+        <!-- <small class="text-danger"
+            *ngIf="formGroup.get('toDo').hasError('minlength')">
+            The minimum length for this field is {{formGroup.get('toDo').errors.minlength.requiredLength}} characters.
+        </small>
+        <small class="text-danger"
+            *ngIf="formGroup.get('toDo').hasError('maxlength')">
+            The maximum length for this field is {{formGroup.get('toDo').errors.maxlength.requiredLength}} characters.
+        </small> -->
+    </div>
+    
+                                         <!-- <span class="text-danger"
+                                         *ngIf="(f.email.touched || submitted ) && f.email.errors?.required">Mobile Number
+                                         Required</span> -->
+                                    </div>
+                                </div>  
+                        </div>
+                        <div class="modal-footer p-0 border-0">
+                            <div class="col-6 m-0 p-0">
+                                <button type="button" class="btn border-top btn-lg btn-block"
+                                    data-dismiss="modal"(click)="modal.dismiss('Cross click')">Close</button>
+                            </div>
+                            <div class="col-6 m-0 p-0">
+                                <button type="submit" class="btn btn-primary btn-lg btn-block" id="btnGetOtp"
+                                data-dismiss="modal" [disabled]="!form_change_email.valid">Get OTP</button>                          
+                                    <!--data-toggle="modal" data-target="#verifyotp" <div class="input-group-append float-right ffa"><a id="button-addon2" type="button"
+                                        data-toggle="modal" data-target="#exampleModal" class=""><i
+                                            class="feather-edit text-success"></i></a>
+                                </div> [disabled]="f.email.valid === false"-->
+                            </div>
+                            
+                        </div>
+                 
+                    </div>
+                </div>
+                </form>
+            </ng-template>
+
+
+              <ng-template #modalDefault let-modal class="modal  " style="z-index: 1040;" id="#modalDefault" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true" >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header"> 
+                        <h2 class="mb-1">Verify your phone number and Email</h2>
+                        
+                        <button type="button" class="close" style="border-color: user-select none;" (click)="modal.dismiss('Cross click')" aria-label="Close"> 
+                          <span aria-hidden="true">&times;</span> 
+                        </button> 
+                      </div> 
+                  
+
+                    <div class="modal-body">
+                        <div class="osahan-verification">
+                            <!-- <div class="p-3 border-bottom">
+                                <a class="text-primary" [routerLink]="['#']"
+                                    [routerLinkActive]="'active'"><i class="feather-chevron-left"></i> Back</a>
+                            </div> -->
+                            <form [formGroup]="changePasswordForm">
+                                <div class="verify_number p-4">
+                                    <!-- <h2 class="mb-3">Verify your<br>phone number</h2> -->
+                                    <h6 class="text-black-50">Enter your OTP code here</h6>
+                                    <!-- <input #input1 type="text" maxlength="2" size="2" (input)="isOTP($event, input2)" />
+                                    -
+                                    <input #input2 type="text" maxlength="2" size="2"(input)="isOTP($event, input3)" />
+                                    <input #input3 type="text" maxlength="2" size="2" /> -->
+
+
+                                     <div class="row my-5 mx-0" style="font-size: medium;">
+                                        <div class="col pr-1 pl-0">
+                                            <input #digit1 type="text" name="otp1" id="digit-1" data-next="digit-2"
+                                                formControlName="otp1" (keyup)="isOTP(digit1, $event, digit2, 1)"
+                                                class="form-control form-control-lg" maxLength="1" size="1">
+                                        </div>
+                                        <div class="col px-2">
+                                            <input #digit2 type="text" name="otp2" id="digit-2" data-next="digit-3"
+                                                data-previous="digit-1" formControlName="otp2" (keyup)="isOTP(digit1, $event, digit3, 2)"
+                                                class="form-control form-control-lg" maxLength="1">
+                                        </div>
+                                        <div class="col px-2">
+                                            <input #digit3  type="text" name="otp3" id="digit-3" data-next="digit-4"
+                                                data-previous="digit-2" formControlName="otp3" (keyup)="isOTP(digit2, $event, digit4, 3)"
+                                                class="form-control form-control-lg" maxLength="1">
+                                        </div>
+                                        <div class="col pl-1 pr-0">
+                                            <input #digit4  type="text" name="otp4" id="digit-4" data-next="digit-5"
+                                                data-previous="digit-3" formControlName="otp4" (keyup)="isOTP(digit3, $event,digit5, 4)"
+                                                class="form-control form-control-lg" maxLength="1">
+                                        </div>
+                                        <div class="col pl-1 pr-0">
+                                            <input #digit5 type="text" name="otp5" id="digit-5" data-next="digit-6"
+                                                data-previous="digit-4" formControlName="otp5" (keyup)="isOTP(digit4, $event,digit6, 5)"
+                                                class="form-control form-control-lg" maxLength="1">
+                                        </div>
+                                        <div class="col pl-1 pr-0">
+                                            <input #digit6  type="text" name="otp6" id="digit-6" data-previous="digit-5"
+                                                formControlName="otp6" (keyup)="isOTP(digit5, $event, digit6, 6)"
+                                                class="form-control form-control-lg " maxLength="1">
+                                        </div>
+                                    </div> 
+                                    <!-- <button class="btn btn-lg btn-primary btn-block">Verify Now</button> -->
+                                </div>
+                            </form>
+                            <!-- <form [formGroup]="changePasswordForm">
+                                <div class="verify_number p-4">
+                                    <h2 class="mb-3">Verify your<br>phone number</h2>
+                                    <h6 class="text-black-50">Enter your OTP code here</h6>
+                                    <div class="row my-5 mx-0" style="font-size: medium;">
+                                        <div class="col pr-1 pl-0">
+                                            <input type="text" name="otp1" id="digit-1" ngModel="dfgf.digit-1" val-to-jump="2" focus-next-input data-next="digit-2"
+                                                formControlName="otp1" (keyup)="isOTP($event)"
+                                                class="form-control form-control-lg" maxLength="1">
+                                        </div>
+                                        <div class="col px-2">
+                                            <input type="text" name="otp2" id="digit-2" data-next="digit-3"
+                                                data-previous="digit-1" formControlName="otp2" (keyup)="isOTP($event)"
+                                                class="form-control form-control-lg" maxLength="1">
+                                        </div>
+                                        <div class="col px-2">
+                                            <input type="text" name="otp3" id="digit-3" data-next="digit-4"
+                                                data-previous="digit-2" formControlName="otp3" (keyup)="isOTP($event)"
+                                                class="form-control form-control-lg" maxLength="1">
+                                        </div>
+                                        <div class="col pl-1 pr-0">
+                                            <input type="text" name="otp4" id="digit-4" data-next="digit-5"
+                                                data-previous="digit-3" formControlName="otp4" (keyup)="isOTP($event)"
+                                                class="form-control form-control-lg" maxLength="1">
+                                        </div>
+                                        <div class="col pl-1 pr-0">
+                                            <input type="text" name="otp5" id="digit-5" data-next="digit-6"
+                                                data-previous="digit-4" formControlName="otp5" (keyup)="isOTP($event)"
+                                                class="form-control form-control-lg" maxLength="1">
+                                        </div>
+                                        <div class="col pl-1 pr-0">
+                                            <input type="text" name="otp6" id="digit-6" data-previous="digit-5"
+                                                formControlName="otp6" (keyup)="isOTP($event)"
+                                                class="form-control form-control-lg " maxLength="1">
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-lg btn-primary btn-block">Verify Now</button>
+                                </div>
+                            </form> -->
+                        </div>
+                    </div>
+                    <div class="modal-footer p-0 border-0">
+                        <div class="col-6 m-0 p-0">
+                            <button type="button" class="btn border-top btn-lg btn-block"
+                                data-dismiss="modal"(click)="modal.dismiss('Cross click')">Close</button>
+                        </div>
+                        <div class="col-6 m-0 p-0">
+                            <button type="button" class="btn btn-primary btn-lg btn-block" (click)="otpValidate(modalDefault)">Verify Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+
+        <form [formGroup]="Add_Delivery_Address">
+            <div class="modal fade" id="exampleModaladd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+    
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add Delivery Address</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                                <div class="form-row">
+                                    <div class="col-md-6 form-group">
+                                        <label class="form-label">Name</label>
+                                        <input placeholder="Name " type="text"
+                                            class="form-control" formControlName="name">
+                                            <span class="text-danger"
+                                            *ngIf="(form_valid.name.touched || submitted ) && form_valid.name.errors?.required">Name
+                                            Required</span>
+                                    </div>
+                                    <div class="col-md-6 form-group mb-0">
+                                        <label class="form-label">Mobile Number </label>
+                                        <input placeholder="Mobile Number" type="number" 
+                                            class="form-control" formControlName="mobile"  onKeyPress="if(this.value.length==10) return false;">
+                                            <span class="text-danger" *ngIf="(form_valid.mobile.touched || submitted ) && form_valid.mobile.errors?.required">Mobile Number 
+                                            Required</span>
+                                    </div>
+                                    <div class="col-md-12 form-group">
+                                        <label class="form-label">Address</label>
+                                        <div class="input-group">
+                                            <textarea placeholder="Write Here Address"
+                                                 id="address" aria-label="With textarea"
+                                                class="form-control" formControlName="address"></textarea>
+                                        </div>
+                                        <span class="text-danger" *ngIf="(form_valid.address.touched || submitted ) && form_valid.address.errors?.required">Address  
+                                            Required</span>
+                                    </div>
+                                    <div class="col-md-6 form-group"><label class="form-label">Street</label>
+                                        <input placeholder=" street" type="text"  
+                                            class="form-control" formControlName="street">
+                                            <span class="text-danger" *ngIf="(form_valid.street.touched || submitted ) && form_valid.street.errors?.required">Street 
+                                                Required</span>
+                                    </div>
+                                    <div class="col-md-6 form-group"><label class="form-label">Landmark</label>
+                                        <input placeholder=" landmark " type="text" 
+                                           class="form-control" formControlName="landmark">
+                                           <span class="text-danger" *ngIf="(form_valid.landmark.touched || submitted ) && form_valid.landmark.errors?.required">landmark
+                                            Required</span>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <label class="form-label">City</label>
+                                        <input placeholder="city" type="text" 
+                                            class="form-control" formControlName="city">
+                                            <span class="text-danger" *ngIf="(form_valid.city.touched || submitted ) && form_valid.city.errors?.required">City
+                                                Required</span>
+    
+                                    </div>
+                                    <div class="col-md-6 form-group mb-0" >
+                                        <label class="form-label">State </label><br>
+                                        <ng-select   [items]="states" bindLabel="state" bindValue="state" placeholder="Select state" 
+                                                         [searchable]="true" formControlName="state" [virtualScroll]="true">
+                                                        </ng-select>
+                                                        <span class="text-danger" *ngIf="(form_valid.state.touched || submitted ) && form_valid.state.errors?.required">City
+                                                            Required</span>
+                                        <!-- <select class="form-control" placeholder="select" formControlName="state">
+                                            <option  *ngFor="let states_name of states" >{{states_name.state}}</option>
+                                           
+                                        </select> -->
+                                    </div>
+                                    <div class="mb-0 col-md-12 form-group">
+                                        <label class="form-label ">Address Type </label><br>
+                                        <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
+                                            <label
+                                                [ngClass]="Add_Delivery_Address.controls['address_type'].value === 'Home' ? 'btn btn-outline-secondary active' : 'btn btn-outline-secondary'">
+                                                <input type="radio" name="options" formControlName="address_type"
+                                                    id="option1" (click)="select_address_type('Home')" value="Home" checked>
+                                                Home
+                                            </label>
+                                            <label
+                                                [ngClass]="Add_Delivery_Address.controls['address_type'].value === 'Office' ? 'btn btn-outline-secondary active' : 'btn btn-outline-secondary'">
+                                                <input type="radio" name="options" formControlName="address_type"
+                                                    id="option2" (click)="select_address_type('Office')" value="Office">
+                                                Office
+                                            </label>
+    
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mt-2">
+
+                                        <input type="checkbox"  name="is_default_address"
+                                            formControlName="is_default_address" id="checkbox1">
+                                        Make this my Default address
+    
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="modal-footer p-0 border-0">
+                            <div class="col-6 m-0 p-0">
+                                <button type="button" class="btn border-top btn-lg btn-block "
+                                    data-dismiss="modal">Close</button>
+                            </div>
+                            <div class="col-6 m-0 p-0">
+                              
+                                <a type="button" class="btn btn-primary btn-lg btn-block" 
+                                (click)="onSubmit_address()" 
+                                routerLink="/Address-Details" routerLinkActive="'active'">Add Address</a>
+                            <!-- </button> -->
+                                <!-- [disabled]="Add_Delivery_Address" [disabled]="!Add_Delivery_Address.valid" -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </form>
+
+    </div>
+  
+   
+
+
+
+    <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
+    <div class="modal left fade  demo" id="exampleModalAdmin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+        <div class="modal-dialog" >
+            <div class="modal-content" >
+        <div class="modal-body p-0">
+            <nav id="main-nav"
+            class=" hc-offcanvas-nav hc-nav-1 nav-levels-overlap nav-position-left  nav-open" >
+            <div class="nav-content " >
+                <h2>
+                    <h5 class="modal-title" id="exampleModalLabel">
+                         PANDROL
+                         <img class="logo" src="{{base.adminAppUrl + '/uploads/apps/logo-white.svg'}}">
+                    </h5>
+                    <button type="button" class="close font-weight-bold text-white" data-dismiss="modal" aria-label="Close">
+                        <span class=" font-weight-bold text-white" aria-hidden="true" style="float: right; font-size: xx-large; line-height: 0;">&times;</span>        </button>
+                  
+
+                    <!-- <img class="logo" src="{{base.adminAppUrl + '/uploads/apps/logo-white.svg'}}">
+                    <h3 style="float: right; font-size: xx-large;" aria-hidden="true" >&times;
+                    </h3> -->
+                </h2>
+                <ul class="second-nav">
+                    <li><a routerLink="/admin-dashboard" routerLinkActive="'active'"><i class="feather-home mr-2"></i> Home</a></li>
+                    <li><a  routerLink="/generate-qr" routerLinkActive="'active'"><i class="feather-printer mr-2"></i>
+                            Generate QR</a></li>
+                    <li><a  routerLink="/user" routerLinkActive="'active'"><i class="feather-printer mr-2"></i>
+                        User</a></li>
+                    <li><a [routerLink]="['/scan-qr']"><i class="feather-grid mr-2"></i>Scan QR</a></li>
+                    <li><a [routerLink]="['/list-qr']"><i class="feather-grid mr-2"></i>Batch List</a></li>
+                    <li>
+                        <a [routerLink]="['/profile']"><i class="feather-user mr-2"></i> Profile</a>
+                    </li>
+                </ul>
+                <ul class="bottom-nav">
+                    <li class="email">
+                        <a class="text-danger" routerLink="/admin-dashboard" routerLinkActive="'active'">
+                            <p class="h5 m-0"><i class="feather-home text-danger"></i></p>
+                            Home
+                        </a>
+                    </li>
+                    <li class="github">
+                        <a [routerLink]="['/about_us']" [routerLinkActive]="'active'">
+                            <p class="h5 m-0"><i class="feather-message-circle"></i></p>
+                            About us
+                        </a>
+                    </li>
+                    <li class="ko-fi">
+                        <a (click)="logout()">
+                            <p class="h5 m-0"><i class="feather-log-out"></i></p>Logout
+                        </a>
+                    </li>
+                </ul>
+            </div> 
+        
+        </nav>
+    </div>
+        </div>
+        </div>
+        </div>
+    <div class="modal left fade  demo" id="exampleModalGenerator" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+        <div class="modal-dialog" >
+            <div class="modal-content">
+        <div class="modal-body p-0">
+            <nav id="main-nav"
+            class=" hc-offcanvas-nav hc-nav-1 nav-levels-overlap nav-position-left  nav-open">
+           
+          <div class="nav-content " >
+            <h2>
+                <h5 class="modal-title" id="exampleModalLabel">
+                     PANDROL  
+                <img class="logo" src="{{base.adminAppUrl + '/uploads/apps/logo-white.svg'}}">
+                </h5>
+                <button type="button" class="close font-weight-bold text-white" data-dismiss="modal" aria-label="Close">
+                    <span class=" font-weight-bold text-white" aria-hidden="true" style="float: right; font-size: xx-large; line-height: 0;">&times;</span>        </button>
+              
+
+                <!-- <img class="logo" src="{{base.adminAppUrl + '/uploads/apps/logo-white.svg'}}">
+                <h3 style="float: right; font-size: xx-large;" aria-hidden="true" >&times;
+                </h3> -->
+            </h2>
+                <!-- <h2>ggggggg
+                    <img class="logo" src="{{base.adminAppUrl + '/uploads/apps/logo-white.svg'}}">
+                    <h3 style="float: right; font-size: xx-large;" aria-hidden="true" >&times;
+                    </h3>
+                </h2> -->
+                <ul class="second-nav">
+                    <li><a routerLink="/scanned-product" routerLinkActive="'active'"><i class="feather-home mr-2"></i> Home</a></li>
+                    <li><a  routerLink="/generate-qr" routerLinkActive="'active'"><i class="feather-printer mr-2"></i>
+                            Generate QR</a></li>
+                    <li><a [routerLink]="['/ist-qr']"><i class="feather-grid mr-2"></i>Batch list</a></li>
+                    <li><a [routerLink]="['/scan-qr']"><i class="feather-grid mr-2"></i>Scan QR</a></li>
+                    <li>
+                        <a [routerLink]="['/profile']"><i class="feather-user mr-2"></i> Profile</a>
+                    </li>
+                </ul>
+                <ul class="bottom-nav">
+                    <li class="email">
+                        <a class="text-danger" routerLink="/scanned-product" routerLinkActive="'active'">
+                            <p class="h5 m-0"><i class="feather-home text-danger"></i></p>
+                            Home
+                        </a>
+                    </li>
+                    <li class="github">
+                        <a [routerLink]="['/about_us']" [routerLinkActive]="'active'">
+                            <p class="h5 m-0"><i class="feather-message-circle"></i></p>
+                            About us
+                        </a>
+                    </li>
+                    <li class="ko-fi">
+                        <a (click)="logout()">
+                            <p class="h5 m-0"><i class="feather-log-out"></i></p>Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        
+        
+        
+        </nav>
+     </div>
+        </div>
+        </div>
+        </div>
+    <div class="modal left fade  demo" id="exampleModalScanner" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+        <div class="modal-dialog" >
+            <div class="modal-content">
+        <div class="modal-body p-0">
+            <nav id="main-nav"
+            class=" hc-offcanvas-nav hc-nav-1 nav-levels-overlap nav-position-left  nav-open">
+            
+            <div class="nav-content">
+                <h2>
+                    <h5 class="modal-title" id="exampleModalLabel">
+                         PANDROL
+                         <img class="logo" src="{{base.adminAppUrl + '/uploads/apps/logo-white.svg'}}">
+                    </h5>
+                    <button type="button" class="close font-weight-bold text-white" data-dismiss="modal" aria-label="Close">
+                        <span class=" font-weight-bold text-white" aria-hidden="true" style="float: right; font-size: xx-large; line-height: 0;">&times;</span>        </button>
+                  
+
+                    <!-- <img class="logo" src="{{base.adminAppUrl + '/uploads/apps/logo-white.svg'}}">
+                    <h3 style="float: right; font-size: xx-large;" aria-hidden="true" >&times;
+                    </h3> -->
+                </h2>
+                <!-- <h2>
+                    <img class="logo" src="{{base.adminAppUrl + '/uploads/apps/logo-white.svg'}}">
+                    <h3 style="float: right; font-size: xx-large;" aria-hidden="true" >&times;
+                    </h3>
+                </h2> -->
+                <ul class="second-nav">
+                    <li><a routerLink="/scanned-product" routerLinkActive="'active'"><i class="feather-home mr-2"></i> Home</a></li>
+                    <li><a  routerLink="/scan-qr" routerLinkActive="'active'"><i class="feather-printer mr-2"></i>
+                       Scan QR</a></li>
+                    <li>
+                        <a [routerLink]="['/profile']"><i class="feather-user mr-2"></i> Profile</a>
+                    </li>
+                </ul>
+                <ul class="bottom-nav">
+                    <li class="email">
+                        <a class="text-danger" routerLink="/scanned-product" routerLinkActive="'active'">
+                            <p class="h5 m-0"><i class="feather-home text-danger"></i></p>
+                            Home
+                        </a>
+                    </li>
+                    <li class="github">
+                        <a [routerLink]="['']" [routerLinkActive]="'active'">
+                            <p class="h5 m-0"><i class="feather-message-circle"></i></p>
+                            About us
+                        </a>
+                    </li>
+                    <li class="ko-fi">
+                        <a (click)="logout()">
+                            <p class="h5 m-0"><i class="feather-log-out"></i></p>Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        
+        
+        
+        </nav>
+        
+
+  </div>
+        </div>
+        </div>
+        </div>
+
+</div>
+    
+
+          <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{{is_edit_mobile== true ? 'Update Mobile Number' : 'Update Email ID'}} </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                 
+
+                    <div class="modal-body">
+                        <form class="" [formGroup]="changePasswordForm">
+                            <div class="form-row">
+
+                                <div class="col-md-12 form-group" [style]=" is_edit_mobile== true ? 'display:block' : 'display:none'">
+                                    <label class="form-label">Mobile Number
+                                    </label>
+                                    <input placeholder="Mobile Number" type='text' class="form-control" name="mobile_Number"
+                                     formControlName="mobile_Number" id="mobile_Number">
+                                     <span class="text-danger"
+                                     *ngIf="(f.mobile_Number.touched || submitted ) && f.mobile_Number.errors?.required">Mobile Number
+                                     Required</span>
+                                    
+                                     
+                                </div>
+                                <div class="col-md-12 form-group" [style]=" is_edit_mobile== false ? 'display:block' : 'display:none'">
+                                    <label class="form-label">Email
+                                    </label>
+                                    <input placeholder="Email" type='text' class="form-control" name="email"
+                                     formControlName="email" id="email">
+                                     <span class="text-danger"
+                                     *ngIf="(f.email.touched || submitted ) && f.email.errors?.required">Email is required</span>
+                                      <span class="text-danger"
+                                     *ngIf="(f.email.touched || submitted) && f.email.errors?.pattern">
+                                     Email must be a valid email address </span>
+                                </div>
+                                
+                                
+
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer p-0 border-0">
+                        <div class="col-6 m-0 p-0">
+                            <button type="button" class="btn border-top btn-lg btn-block"
+                                data-dismiss="modal">Close</button>
+                        </div>
+                        <div class="col-6 m-0 p-0" >
+                            <button type="button" class="btn btn-primary btn-lg btn-block"  (click)='get_otp(modalDefault)' id="btnGetOtp"
+                            data-dismiss="modal">Get OTP</button>
+                                data-toggle="modal" data-target="#verifyotp" <div class="input-group-append float-right ffa"><a id="button-addon2" type="button"
+                                    data-toggle="modal" data-target="#exampleModal" class=""><i
+                                        class="feather-edit text-success"></i></a>
+                            </div> [disabled]="f.mobile_Number.valid === false"
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  -->
+
+       

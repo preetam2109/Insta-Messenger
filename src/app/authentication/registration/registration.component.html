@@ -1,0 +1,205 @@
+<div class="coverImage">
+    <div class="login-page">
+        <div class="vh-250 p-4">
+
+            <div class="text-center ">
+                <img src="{{base.adminAppUrl}}/uploads/apps/logo.png" title="logo" class="text-center h-1-3rem mt-3">
+            </div>
+
+           
+            <form *ngIf="step==1"  [formGroup]="fg_company" (ngSubmit)="onNextClick()" class="mt-5 mb-4">
+                <h6 class="text-white my-0 mt-4">Welcome to Insta Messenger</h6>
+                <p class="text-white text-50 mt-2">Please sign-up to continue</p>
+                <div class="form-group">
+                    <label for="exampleInputName1" class="text-white">Name</label>
+                    <input type="text" placeholder="Enter Name" formControlName="name" class="form-control" id="name"
+                        aria-describedby="nameHelp">
+                    <span class="text-danger"
+                        *ngIf="(onChanged.name.touched || submitted) && onChanged.name.errors?.required">
+                        Name is required
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputNumber1" class="text-white">Mobile Number</label>
+                    <input type="text" placeholder="Enter Mobile" formControlName="mobile"
+                        (keypress)="isMobileNumber($event)" maxlength="10" class="form-control" id="mobile"
+                        aria-describedby="numberHelp">
+                    <span class="text-danger"
+                        *ngIf="(onChanged.mobile.touched || submitted) && onChanged.mobile.errors?.required">
+                        mobile no is required
+                    </span>
+                    <span class="text-danger" *ngIf="onChanged.mobile.touched  && onChanged.mobile.errors?.pattern">
+                        Enter a valid mobile number
+                    </span>
+                </div>
+                <div class="form-group">
+                        <label for="email" class="text-white">Email</label>
+                        <input type="text" placeholder="Enter Email"  formControlName="email" class="form-control" id="email"
+                            aria-describedby="numberHelp">
+                            <span class="text-danger" *ngIf="(onChanged.email.touched || submitted) && onChanged.email.errors?.required">
+                                Email is required
+                            </span>
+                            <span class="text-danger" *ngIf="onChanged.email.touched && onChanged.email.errors?.pattern">
+                                Enter a valid email address
+                            </span>
+                    </div>
+                    <div class="form-group">
+                        <label for="address" class="text-white">Address</label>
+                        <input type="text" placeholder="Enter Address" formControlName="address" class="form-control" id="address">
+                        <span class="text-danger" *ngIf="(onChanged.address.touched || submitted) && onChanged.address.errors?.required">
+                            Address is required</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="city" class="text-white">City</label>
+                        <input type="text" placeholder="Enter city" formControlName="city" class="form-control" id="city">
+                        <span class="text-danger" *ngIf="(onChanged.city.touched || submitted) && onChanged.city.errors?.required">
+                            City is required</span>
+                    </div>
+                          
+                    <div class="form-group">
+                        <label for="state" class="text-white">State</label>
+                        <input type="text" placeholder="Enter state" formControlName="state" class="form-control" id="state">
+                      
+                        <span class="text-danger" *ngIf="(onChanged.state.touched || submitted) && onChanged.state.errors?.required">
+                            State is required</span>
+                    </div>
+                <!--  <div class="form-group">
+                        <label for="exampleInputPassword1" class="text-white">Password</label>
+                        <input type="password" placeholder="Enter Password" formControlName="password" class="form-control" id="password">
+                      <span class="text-danger" *ngIf="(onChanged.password.touched || submitted) && onChanged.password.errors?.required">
+                            password is required
+                        </span> -->
+                <!-- <span class="text-danger" *ngIf="onChanged.password.touched && onChanged.password.errors?.pattern">
+                            Enter a valid password
+                        </span>  
+                    </div>
+                     <div class="form-group">
+                        <label for="exampleInputPassword1" class="text-white">Confirm Password</label>
+                        <input type="password" placeholder="Enter Password" formControlName="confirmPassword" class="form-control" id="confirmPassword">
+                        <span class="text-danger" *ngIf="onChanged.confirmPassword.touched && onChanged.confirmPassword.errors?.required">
+                            confirm password is required
+                         </span>
+                         <span class="text-danger" *ngIf="onChanged.confirmPassword.touched && onChanged.confirmPassword.errors?.mustMatch">
+                             Password and confirm not match
+                         </span>
+                    </div> -->
+                <span>{{response.message}}</span>
+              
+                <!-- <button  class="btn btn-primary btn-lg btn-block"><a class="">NEXT</a></button> -->
+                <button  class="btn  btn-lg btn-block btn-successs">NEXT</button>
+                <div class="py-2"> </div>
+            </form>
+
+            <form *ngIf="step==2" [formGroup]="fg_user" (ngSubmit)="onGetOTPClick()" class="mt-5 mb-4">
+                            <h6 class="text-white my-0 mt-4">Registration for  Authorized Person</h6>
+                            <p class="text-white text-50 mt-2">Please sign-up to continue</p>
+                            <div class="form-group">
+                                <label for="exampleInputName1" class="text-white">Name</label>
+                                <input type="text" placeholder="Enter Name" formControlName="name" class="form-control" id="name"
+                                    aria-describedby="nameHelp">
+                                <span class="text-danger"
+                                    *ngIf="(onChanged.name.touched || submitted) && onChanged.name.errors?.required">
+                                    Name is required
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputNumber1" class="text-white">Mobile Number</label>
+                                <input type="text" placeholder="Enter Mobile" formControlName="mobile"
+                                    (keypress)="isMobileNumber($event)" maxlength="10" class="form-control" id="mobile"
+                                    aria-describedby="numberHelp">
+                                <span class="text-danger"
+                                    *ngIf="(onChanged.mobile.touched || submitted) && onChanged.mobile.errors?.required">
+                                    mobile no is required
+                                </span>
+                                <span class="text-danger" *ngIf="onChanged.mobile.touched  && onChanged.mobile.errors?.pattern">
+                                    Enter a valid mobile number
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                    <label for="email" class="text-white">Email</label>
+                                    <input type="text" placeholder="Enter Email"  formControlName="email" class="form-control" id="email"
+                                        aria-describedby="numberHelp">
+                                        <span class="text-danger" *ngIf="onChanged.email.touched || submitted && onChanged.email.errors?.required">
+                                            Email is required
+                                        </span>
+                                        <span class="text-danger" *ngIf="onChanged.email.touched && onChanged.email.errors?.pattern">
+                                            Enter a valid email address
+                                        </span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="address" class="text-white">Address</label>
+                                    <input type="text" placeholder="Enter Address" formControlName="address" class="form-control" id="address">
+                                    <span class="text-danger" *ngIf="(onChanged.address.touched || submitted) && onChanged.address.errors?.required">
+                                        Address is required</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="city" class="text-white">City</label>
+                                    <input type="text" placeholder="Enter city" formControlName="city" class="form-control" id="city">
+                                    <span class="text-danger" *ngIf="(onChanged.city.touched || submitted) && onChanged.city.errors?.required">
+                                        City is required</span>
+                                </div>
+                                      
+                                <div class="form-group">
+                                    <label for="state" class="text-white">State</label>
+                                    <input type="text" placeholder="Enter state" formControlName="state" class="form-control" id="state">
+                                    <span class="text-danger" *ngIf="(onChanged.state.touched || submitted) && onChanged.state.errors?.required">
+                                        State is required</span>
+                                </div>
+                             <div class="form-group">
+                                    <label for="exampleInputPassword1" class="text-white">Password</label>
+                                    <input type="password" placeholder="Enter Password" formControlName="password" class="form-control" id="password">
+                                  <span class="text-danger" *ngIf="(onChanged.password.touched || submitted) && onChanged.password.errors?.required">
+                                        password is required
+                                    </span>
+                            <span class="text-danger" *ngIf="onChanged.password.touched && onChanged.password.errors?.pattern">
+                                        Enter a valid password
+                                    </span>  
+                                </div>
+                                 <!-- <div class="form-group">
+                                    <label for="exampleInputPassword1" class="text-white">Confirm Password</label>
+                                    <input type="password" placeholder="Enter Password" formControlName="confirmPassword" class="form-control" id="confirmPassword">
+                                    <span class="text-danger" *ngIf="onChanged.confirmPassword.touched && onChanged.confirmPassword.errors?.required">
+                                        confirm password is required
+                                     </span>
+                                     <span class="text-danger" *ngIf="onChanged.confirmPassword.touched && onChanged.confirmPassword.errors?.mustMatch">
+                                         Password and confirm not match
+                                     </span>
+                                    </div> -->
+                                    
+
+                                    
+                                    <span>{{response.message}}</span>
+                            <!-- new code for data toggle -->
+                            <!-- <div class="bg-white rounded  mt-0 profile-details">
+                                <a type="button" data-toggle="modal" data-target="#paycard"
+                                    class=" btn  d-flex w-100 align-items-center border-bottom p-3">
+                                    <div class="left mr-3">
+                                        <h6 class="  font-weight-bold mb-1 text-dark">Next</h6>
+                                        <p class="small text-muted m-0">Add a credit or debit card</p>
+                                    </div>
+                                    <div class="right ml-auto">
+                                        <h6 class="font-weight-bold m-0"><i class="feather-chevron-right"></i></h6>
+                                    </div>
+                                </a>
+                            </div> -->
+                            <!-- new code for data toggle end -->
+                            <!-- <button class="btn btn-primary btn-lg btn-block"><a class="">NEXT</a>     -->
+                                <!-- <button routerLink="/otp" routerLinkActive="active" type="submit" class="btn btn-primary btn-lg btn-block"><a class="">SIGN UP</a></button> -->
+                                <button class="btn  btn-lg btn-block" style="color: #fff;
+                                        background-color: #218838;
+                                        border-color: #1e7e34"><a class="">SIGN UP</a></button>
+                                <!-- <button class="btn btn-primary btn-lg btn-block"><a class="">NEXT</a> -->
+                                    
+                                    <!-- </button> -->
+                                    <div class="py-2"> </div>
+            </form>
+        </div>
+        <div class="d-flex align-items-center justify-content-center pb-4" (click)="navigate()">
+            <a (click)="navigate()">
+                <p class="text-center text-white pb-4" (click)="navigate()">Already have an account? Sign in</p>
+            </a>
+        </div>
+
+        </div>
+
+    </div>

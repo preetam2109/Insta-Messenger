@@ -1,0 +1,106 @@
+<div class="fixed-bottom-bar">
+    <div class="osahan-home-page pb-3">
+        <div class="bg-primary p-3">
+            <div class="text-white">
+                <div class="title d-flex align-items-center ">
+                    <a class="nav-toggler" [class.drawer-open]="isDrawerOpen" id="nav-toggler"
+                        (click)="toggleNavDrawer(!isDrawerOpen)" data-target="#navbar" aria-controls="navbar">
+                        <span></span> <span></span> <span></span> <span></span>
+                    </a>
+                    <h4 class="font-weight-bold m-0 pl-5">
+                        <img class="logo" src="{{base.adminAppUrl + '/uploads/apps/logo-white.svg'}}">
+                    </h4>
+                </div>
+                <app-sidebar [isDrawerOpen]="isDrawerOpen" (drawerToggleEmitter)="toggleNavDrawer($event)">
+                </app-sidebar>
+            </div>
+        </div>
+
+        <div class="p-3 mb-5">
+            <div class="bg-white rounded shadow mb-0 profile-details ">
+                <div class="modal-header">
+                    <h5 class="modal-title">Send SMS</h5>
+                </div>
+                <div class="m-3 ">
+                    <form [formGroup]="formgroup" (ngSubmit)="on_submit()">
+                        <div class="form-row">
+                            <div class="col-md-6 form-group">
+                                <label class="form-label font-weight-bold ">Send To</label>
+                                <select class="custom-select form-control" placeholder="Select Role" formControlName="send_to"
+                                    (change)="onChange_sendid($event)">
+                                    <option value="1">New Contact</option>
+                                    <option value="2">All added Contact</option>
+                                    <option value="3">Custom Contact</option>
+                                </select>
+                                <span class="text-danger"
+                                *ngIf="(form_valid.send_to.touched || submitted) && form_valid.send_to.errors?.required">* Send Required</span>
+                            </div>
+                            <div class="col-md-6 form-group" *ngIf="send_to == 1">
+                                <label class="form-label font-weight-bold ">Moblie</label>
+                                <input placeholder="moblie" type="text" class="form-control"
+                                    formControlName="mobile_nos" maxlength="10">
+                                    <span class="text-danger"
+                                    *ngIf="(form_valid.mobile_nos.touched || submitted) && form_valid.mobile_nos.errors?.required">* Moblie Number is
+                                    Required</span>
+                            </div>
+
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6 form-group">
+                                <label class="form-label font-weight-bold ">Message type </label>
+                                <select class="custom-select form-control" placeholder="select"
+                                    formControlName="message_type" (change)="onChange_message_type($event)">
+                                    <option value="1">Text</option>
+                                    <option value="2">Photo</option>
+                                    <option value="3">Video</option>
+                                </select>
+                                <span class="text-danger"
+                                *ngIf="(form_valid.message_type.touched || submitted) && form_valid.message_type.errors?.required">* Template
+                                Required</span>
+                            </div>
+                            <div class="col-md-6 form-group" *ngIf="message_type_id == 2 || message_type_id == 3 ">
+                                <label class="form-label font-weight-bold ">Upload</label>
+                                <a class="links " type="" (click)="file.click()">
+                                    <div class="border rounded form-control" style="text-align:center">
+                                        <i class="feather feather-upload-cloud"></i>
+                                        <label class="medium ml-2">Upload</label>
+                                    </div>
+                                </a>
+                                <input class="" type='file' name='file' id='file' formControlName='files' #file (change)="onSelectFile($event)"
+                                    accept="image/png, image/gif, image/jpeg, text/plain, application/pdf,video/mp4,video/x-m4v,video/*"
+                                    style="display:none" />
+                                <span class="text-danger" *ngIf="(form_valid.files.touched || submitted) && form_valid.files.errors?.required">*File
+                                    Required</span>
+                            </div>
+                            <div class="col-md-12 input-group" *ngIf="message_type_id == 1">
+                                <textarea placeholder="Write message here " rows="5" id="address" aria-label="With textarea" class="form-control"
+                                    formControlName="message"></textarea>
+                            </div>
+                                <span class="text-danger"
+                                *ngIf="(form_valid.message.touched || submitted) && form_valid.message.errors?.required">* Message
+                                Required</span>
+                        </div>
+                        <div class="form-row mt-2">
+                            <div class="col-6 form-group">
+                                <button type="submit" class="btn btn-success w-100" [disabled]="!formgroup.valid"> <i class="feather-send"></i>
+                                    Send</button>
+                            </div>
+                            <div class="col-6 form-group">
+                                <a class="btn btn-primary w-100" routerLink="/home" routerLinkActive="active">
+                                    <i class="feather-home"></i>
+                                    Back</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>
+
+
+                              <!-- <input class="form-control" name="file" id="file" type="file" formControlName="file"
+                              accept="image/png, image/gif, image/jpeg,text/plain,application/pdf" #file
+                              (change)="onSelectFile($event)" style="display:none ;"> -->

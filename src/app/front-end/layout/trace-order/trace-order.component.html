@@ -1,0 +1,299 @@
+<div class="fixed-bottom-bar ">
+  <div class="osahan-profile">
+    <div class="osahan-faq">
+
+      <div class="bg-primary ">
+        <div class="text-white">
+          <div class="title d-flex align-items-center px-3 pb-5 pt-3  ">
+            <a class="nav-toggler" [class.drawer-open]="isDrawerOpen" id="nav-toggler"
+              (click)="toggleNavDrawer(!isDrawerOpen)" data-target="#navbar" aria-controls="navbar">
+              <span></span> <span></span> <span></span> <span></span>
+            </a>
+            <h4 class="font-weight-bold m-0 text-white ml-5">Trace Your Orders</h4>
+            <a class="text-white font-weight-bold ml-auto" [routerLink]="'/get-all-orders'"><i class="feather-chevron-left"></i> Back</a>
+            <!-- <h4 class="font-weight-bold m-0 pl-5">
+                <img class="logo" src="{{base.adminAppUrl + '/uploads/apps/logo-white.svg'}}"></h4> -->
+
+            <!-- <a class="text-white font-weight-bold ml-auto" data-toggle="modal" data-target="#exampleModal"
+                (click)="preefil_filter_sort_value()">Filter</a> -->
+          </div>
+          <app-sidebar [isDrawerOpen]="isDrawerOpen" (drawerToggleEmitter)="toggleNavDrawer($event)">
+          </app-sidebar>
+
+
+        </div>
+      </div>
+      <div class="p-3  osahan-profile cardcontener">
+        <div class="osahan-privacy bg-white rounded shadow p-4 mb-3 ">
+          <div class=" align-items-center ">
+            <div style="width: 100%;" class="">
+              <div style="width: 100%;">
+                <h5 class=" mb-3 font-weight-bold text-center" style="margin: auto; padding: auto;">
+                  Oder status
+                </h5>
+              </div>
+              <div class="mb-5" style="width: 100%; ">
+                <div style="width: 120px;height: 120px; margin: auto; padding: auto;position: relative;">
+                  <img src=".././.././../../assets/img/popular7.png" class="rounded-circle  "
+                    style="width:100%; height:100%; border:1px solid #dddddb ;">
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <!-- <button (click)="getNowUTC()"></button> -->
+          <div class=" ">
+            <ul class="StepProgress current">
+            
+              <div class="StepProgress-item current" *ngIf="tracking_value.pickup_date != null" >
+               
+                <strong >Item picked up<p class="float-right current">{{Seconds_Between_Dates|number}}</p>
+                  <br><i class="feather feather-clock text-primary">&nbsp;</i>
+                    {{tracking_value.pickup_date | date:'m/d/yyyy, h:mm a'}}
+                </strong>
+                  <!-- <p class="float-right ">{{pickup_date}}</p> -->
+                  
+              </div>
+              <div class="StepProgress-item current" *ngIf="tracking_value.ofd_date !=null" >
+                <strong >Ot for delivery <p class="float-right current">{{ofd_Between_Dates|number}}</p> <br><i class="feather feather-clock text-primary">&nbsp;</i>
+                    {{tracking_value.ofd_date | date:'M/d/yyyy, h:mm a'}}
+               </strong>
+                 
+              </div>
+              <div class="StepProgress-item current" *ngIf="tracking_value.delivery_date != null">
+                <strong >Item delivered  <p class="float-right current">{{delivery_Between_Dates|number}}</p><br> <i class="feather feather-clock text-primary">&nbsp;</i>
+                   {{tracking_value.delivery_date | date:'M/d/yyyy, h:mm a'}}</strong>
+                <!-- <p class="float-right current">{{delivery_Between_Dates|number}}</p> -->
+                 
+              </div>
+            
+            </ul>
+          </div>
+
+          <div class=" mb3 float-center btn btn-block">
+            <button class=" btn btn-danger align-self-center" data-toggle="modal" data-target="#paycard"
+              (click)="get_location_Address()">
+              <i class="feather feather-map-pin">&nbsp;</i>Tracking
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="modal fade" id="paycard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Find location</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container mb-5">
+              <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+                <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"></agm-marker>
+              </agm-map>
+              <h5>Address: {{address}}</h5>
+              <div>Latitude: {{latitude}}</div>
+              <div>Longitude: {{longitude}}</div>
+            </div>
+            <div class="cat-item px-1 py-3">
+              <div class="bg-white rounded d-block p-2 text-center shadow" >
+              <h4 class="m-0 small">Tracking Order</h4>
+              <p>Arrives in:30.55 minutes</p>
+              <button class="iconclass">
+              <i class="feather-camera text-white " ></i>
+          </button>&nbsp;&nbsp;
+          <button  class="check ">
+          <i class="eather feather-phone-call text-white"></i></button>
+          
+
+              </div>
+
+              </div>
+
+          </div>
+          <div class="modal-footer p-0 border-0">
+            <div class="col-6 m-0 p-0">
+              <button type="button" class="btn border-top btn-lg btn-block" data-dismiss="modal">Close</button>
+            </div>
+            <div class="col-6 m-0 p-0">
+              <button type="button" class="btn btn-primary btn-lg btn-block">Order Details</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- <div class="StepProgress-item is-done"><strong>Award an entry</strong>
+                                            Got more entries that you love? Buy more entries anytime! Just hover on your favorite entry and click the Buy button
+                                          </div> -->
+    <!-- <div class="StepProgress-item is-done"><strong>Post a contest</strong></div> -->
+    <!-- <div class="StepProgress-item current" ><strong>Handover</strong></div>
+                                          <div class="StepProgress-item current"><strong>Provide feedback</strong></div> -->
+
+
+
+    <!-- <div class="progress progress-bar-vertical">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="60" aria-valuemax="100" >
+                                          <span class="sr-only">60% Complete</span>
+                                        </div>
+                                      </div> -->
+
+
+    <!-- <div class="container_body">
+                        <h3>{{ name}}</h3>
+                        <div class="container">
+                            <span *ngFor="let item of counts;let i = index">
+                                <span class="bar " *ngIf="(i != counts.length-1)"></span>
+                                <span class="circle-desc" [class.circle-desc-active]="orderStatus == item">{{ item
+                                    }}</span>
+                                <span class="circles" [class.active]="orderStatus == item"></span>
+
+                            </span>
+                        </div>
+                    </div> 
+                 
+.progress.vertical {
+    position: relative;
+    width: 20px;
+    min-height: 240px;
+    float: left;
+    margin-right: 20px;
+    background: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border: none;
+}
+.container_body{
+    font-size:1em;
+     height: 100%;
+  }
+  
+  h3 {
+    font-family: Lato;
+    text-align: center;
+    color:	#0080ff;
+  }
+  
+  .circles{
+    height: 0.938em;
+    width: 0.938em;
+    border: 0.188em solid #000;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  
+  .active{
+      background-color:#ffa500;
+  }
+  
+  .circle-desc-active{
+  font-weight: bold;
+  }
+  
+  .bar{
+    width: 16%;
+    height: 0.063em;
+    margin-bottom:0.469em;
+    border: 0.031em solid #000;
+    color:#000;
+    background-color:#000;
+    display: inline-block;
+    text-align:center;
+    margin:"0 auto";
+
+  }
+  
+  .container{
+    min-width:320px;
+    margin: "0px auto";
+    text-align: center;
+  }
+  
+  .circle-desc{
+   position: fixed;
+   top:5.000em;
+   font-size: 1.125em;
+   width: auto;
+   max-width:9.375em;
+   margin-left:-0.750em;
+  }
+
+
+
+  
+  
+  @media only screen and (max-width: 320px){
+     body {
+       font-size:20%
+    }
+  } 
+  
+  /*extra small devices*/
+  @media only screen and (max-width: 600px){
+     body {
+       font-size:40%
+    }
+  } 
+  
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+     body {
+       font-size:60%
+    }
+  } 
+  
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+    body {
+       font-size:80%
+    }
+  } 
+  
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+    body {
+       font-size:100%
+    }
+  } 
+  
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  @media only screen and (min-width: 1200px) {
+     body {
+       font-size:120%
+    }
+  }
+
+-->
+
+
+          <!-- <div style="margin-left:10px"> -->
+          <!-- <div class="wrapper">
+            <ul class="StepProgress ">
+              <span *ngFor="let item of counts;let i = index">&& i<counts.length?
+              <div class="StepProgress-item is-done" *ngFor="let item of counts;let i = index"
+                *ngFor="let item of tracking_value;let i = index"
+                [ngClass]="orderStatus == item ?  'is-done' : 'current'" 
+              <div class="  " >
+                <strong class=" StepProgress-item current ">Order Received</strong>
+                <strong class=" StepProgress-item  is-done">Preparing Order</strong>
+                <strong class=" StepProgress-item current">On the way</strong>
+                <strong class=" ">{{tracking_value.pickup_address}}</strong>
+                <span class="p-0 mb-0">{{tracking_value.pickup_date}}</span>
+                <span></span>
+                <div class=" float-right">
+                  <span class="">3:30</span>
+
+                </div>
+              </div>
+
+            </ul>
+
+          </div> -->

@@ -1,0 +1,98 @@
+<div class="fixed-bottom-bar">
+    <div class="osahan-home-page pb-3">
+        <div class="bg-primary p-3">
+            <div class="text-white">
+                <div class="title d-flex align-items-center ">
+                    <a class="nav-toggler" [class.drawer-open]="isDrawerOpen" id="nav-toggler"
+                        (click)="toggleNavDrawer(!isDrawerOpen)" data-target="#navbar" aria-controls="navbar">
+                        <span></span> <span></span> <span></span> <span></span>
+                    </a>
+                    <h4 class="font-weight-bold m-0 pl-5">
+                        <img class="logo" src="{{base.adminAppUrl + '/uploads/apps/logo-white.svg'}}">
+                    </h4>
+                </div>
+                <app-sidebar [isDrawerOpen]="isDrawerOpen" (drawerToggleEmitter)="toggleNavDrawer($event)">
+                </app-sidebar>
+            </div>
+        </div>
+
+        <div class="p-3 mb-5">
+            <div class="bg-white rounded shadow mb-0 profile-details ">
+                <div class="modal-header">
+                    <h5 class="modal-title">Send SMS</h5>
+                </div>
+                <div class="m-3 ">
+                    <form [formGroup]="formgroup" (ngSubmit)="on_submit()">
+                        <div class="form-row">
+                            <div class="col-md-6 form-group">
+                                <label class="form-label font-weight-bold ">Send To</label>
+                                <select class="custom-select form-control" placeholder="Select Role" formControlName="send_to"
+                                    (change)="onChange_sendid($event)">
+                                    <option value="1">New Contact</option>
+                                    <option value="2">All added Contact</option>
+                                    <option value="3">Custom contact</option>
+                                </select>
+                                <span class="text-danger"
+                                *ngIf="(form_valid.send_to.touched || submitted) && form_valid.send_to.errors?.required">*Send required</span>
+                            </div>
+                            <div class="col-md-6 form-group" *ngIf="send_to == 1">
+                                <label class="form-label font-weight-bold ">Moblie</label>
+                                <input placeholder="moblie" type="text" class="form-control"
+                                    formControlName="mobile_nos" maxlength="10">
+                                    <span class="text-danger"
+                                    *ngIf="(form_valid.mobile_nos.touched || submitted) && form_valid.mobile_nos.errors?.required">*Moblie number is
+                                    required</span>
+                            </div>
+
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6 form-group">
+                                <label class="form-label font-weight-bold ">Header </label>
+                                <select class="custom-select form-control" placeholder="select"
+                                    formControlName="header_id" (change)="onHeaderID_Change($event)">
+                                    <option *ngFor="let header_list of header_list" [value]="header_list.id">
+                                        {{header_list.header}}
+                                    </option>
+                                </select>
+                                <span class="text-danger"
+                                *ngIf="(form_valid.header_id.touched || submitted) && form_valid.header_id.errors?.required">*Header required</span>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label class="form-label font-weight-bold ">Template</label>
+                                <select class="custom-select form-control" placeholder="select"
+                                    formControlName="template_id" (change)="onChange_template($event)">
+                                    <option *ngFor="let items of template_filter_data" [value]="items.template_id">
+                                        {{items.template}}
+                                    </option>
+                                </select>
+                                <span class="text-danger"
+                                *ngIf="(form_valid.template_id.touched || submitted) && form_valid.template_id.errors?.required">*Template
+                                required</span>
+                            </div>
+
+                            <div class="col-md-12 input-group">
+                                <textarea placeholder="Write Here Address" id="address" aria-label="With textarea" class="form-control"
+                                    formControlName="message"></textarea>
+                            </div>
+                                <span class="text-danger"
+                                *ngIf="(form_valid.message.touched || submitted) && form_valid.message.errors?.required">*Message
+                                required</span>
+                        </div>
+                        <div class="form-row mt-2">
+                            <div class="col-6 form-group">
+                                <button type="submit" class="btn btn-success w-100" [disabled]="!formgroup.valid" > <i class="feather-send"></i>
+                                    Send</button>
+                            </div>
+                            <div class="col-6 form-group">
+                                <a class="btn btn-primary w-100" routerLink="/home" routerLinkActive="active">
+                                    <i class="feather-home"></i>
+                                    Back</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

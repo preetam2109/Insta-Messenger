@@ -1,0 +1,205 @@
+<div class="fixed-bottom-bar">
+    <div class="osahan-home-page pb-3">
+        <div class="bg-primary p-3">
+            <div class="text-white">
+                <div class="title d-flex align-items-center ">
+                    <a class="nav-toggler" [class.drawer-open]="isDrawerOpen" id="nav-toggler"
+                        (click)="toggleNavDrawer(!isDrawerOpen)" data-target="#navbar" aria-controls="navbar">
+                        <span></span> <span></span> <span></span> <span></span>
+                    </a>
+                    <h4 class="font-weight-bold m-0 pl-5">
+                        <img class="logo" src="{{base.adminAppUrl + '/uploads/apps/logo-white.svg'}}">
+                        <!-- PANDROL RAIPUR -->
+                    </h4>
+                </div>
+                <app-sidebar [isDrawerOpen]="isDrawerOpen" (drawerToggleEmitter)="toggleNavDrawer($event)">
+                </app-sidebar><!-- app-admin-sidebar -->
+            </div>
+        </div>
+        <div class="p-3 pt-3" >
+            <div class="bg-white rounded shadow mb-0 profile-details">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{type == 1 ? 'SMS Settings' : 'Whats App Settings'}}</h5>
+                </div>
+                <div class="m-3 pb-2">
+                    <form [formGroup]="fg" (ngSubmit)="on_submit()">
+                        <div class="form-row" formGroupName="tbl_api">
+                            <div class="col-md-12 form-group"><label class="col-form-label label">{{type == 1 ? 'SMS API Url' : 'Whats App API Url'}}</label>
+                                <input placeholder="Api Url" type="text" class="form-control" name="url"
+                                    formControlName="url">
+                                    <small class="text-danger" *ngIf="fg.get('url')?.invalid && fg.get('url')?.touched">
+                                        Url is required
+                                      </small>
+                                <input type="hidden" class="form-control" formControlName="id">
+                            </div>
+                        </div>
+                        <div class="" formGroupName="tbl_api_key">
+                            <label class="col-form-label label font-weight-bold">API Parameters:</label>
+                            <div *ngFor="let api_key of form_array.controls; let i = index">
+                                <div class="row" [formGroupName]="i">
+                                    <div class="col-md-2 align-items-center display-none">
+                                        <label class="col-form-label label"> {{api_key.value.title}}</label>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <input placeholder="key" type="text" class="form-control" name="key"
+                                            formControlName="key">
+
+                                        <div *ngIf="form_array.controls[i].get('key')?.invalid && form_array.controls[i].get('key')?.touched"
+                                            class="text-danger">
+                                            <small *ngIf="form_array.controls[i].get('key')?.hasError('required')">
+                                                *Key is required.
+                                            </small>
+                                        </div>
+
+                                        <input type="hidden" class="form-control" formControlName="title">
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <input placeholder="value" type="text" class="form-control" name="value"
+                                            formControlName="value">
+                                    </div>
+
+                                    <div class="col-md-2 form-group"
+                                        *ngIf="api_key.value.title == null && i!=form_array.controls.length - 1">
+                                        <button type="button" class="btn btn-sm btn-danger" style="margin-top:3px;" (click)="onDeleteRow(i)"><i
+                                                class="feather-minus"></i></button>
+                                    </div>
+                                    <div class="col-md-2 form-group" *ngIf="i==form_array.controls.length - 1">
+                                        <button type="button" class="btn btn-sm btn-success" style="margin-top:3px;"(click)="onAddRow()"><i
+                                                class="feather-plus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-6 form-group">
+                                    <button type="submit" class="btn btn-success w-100"[disabled]="!fg.valid"> <i class="feather-save"></i>
+                                        Save</button>
+                                </div>
+                                <div class="col-6 form-group">
+                                    <a class="btn btn-primary w-100" routerLink="/home" routerLinkActive="active">
+                                        <i class="feather-home"></i>
+                                        Back</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="fixed-bottom  osahan-menu-fotter bg-white px-3 py-2 text-center show">
+    <div class="row " *ngIf="UserDetail.role=='Admin'">
+        <div class="col" [routerLinkActive]="'active'">
+            <a [routerLink]="'/user'" class="text-dark small font-weight-bold text-decoration-none">
+                <p class="h4 m-0"><i class="feather-users"></i></p>
+                Manage user
+            </a>
+        </div>
+        <div class="col" [routerLinkActive]="'active'">
+            <a [routerLink]="'/list-qr'" class="text-dark small font-weight-bold text-decoration-none">
+                <p class="h4 m-0"><i class="feather-list"></i></p>
+                Product List
+            </a>
+        </div>
+        <div class="col bg-white rounded-circle mt-n4 px-3 py-2">
+            <div class="bg-danger rounded-circle mt-n0 shadow">
+                <a data-dismiss="modal" class="text-white small font-weight-bold text-decoration-none"
+                    [routerLink]="'/scan-qr'" [routerLinkActive]="'active'">
+                    <i class="feather-camera"></i>
+                </a>
+            </div>
+        </div>
+        <div class="col">
+            <a [routerLink]="'/generate-qr'" [routerLinkActive]="'active'"
+                class="text-dark small font-weight-bold text-decoration-none">
+                <p class="h4 m-0"><i class="feather-printer"></i></p>
+                Generate QR
+            </a>
+        </div>
+        <div class="col">
+            <a [routerLink]="'/profiles'" [routerLinkActive]="'active'"
+                class="text-dark small font-weight-bold text-decoration-none">
+                <p class="h4 m-0"><i class="feather-user"></i></p>
+                Profile
+            </a>
+        </div>
+    </div>
+    <div class="row" *ngIf="UserDetail.role =='Generator'">
+        <div class="col">
+            <a [routerLink]="'/list-qr'" [routerLinkActive]="'active'"
+                class="text-dark small font-weight-bold text-decoration-none">
+                <p class="h4 m-0"><i class="feather-list"></i></p>
+                Product List
+            </a>
+        </div>
+        <div class="col">
+            <a [routerLink]="'/generate-qr'" [routerLinkActive]="'active'"
+                class="text-dark small font-weight-bold text-decoration-none">
+                <p class="h4 m-0"><i class="feather-printer"></i></p>
+                Generate QR
+            </a>
+        </div>
+        <div class="col bg-white rounded-circle mt-n4 px-3 py-2">
+            <div class="bg-danger rounded-circle mt-n0 shadow">
+                <a data-dismiss="modal" class="text-white small font-weight-bold text-decoration-none"
+                    [routerLink]="'/scan-qr'" [routerLinkActive]="'active'">
+                    <i class="feather-camera"></i>
+                </a>
+            </div>
+        </div>
+        <div class="col">
+            <a [routerLink]="'/scanned-product'" [routerLinkActive]="'active'"
+                class="text-dark small font-weight-bold text-decoration-none">
+                <p class="h4 m-0"><i class="feather-list"></i></p>
+                Scanned Product
+            </a>
+        </div>
+        <div class="col">
+            <a [routerLink]="'/profiles'" [routerLinkActive]="'active'"
+                class="text-dark small font-weight-bold text-decoration-none">
+                <p class="h4 m-0"><i class="feather-user"></i></p>
+                Profile
+            </a>
+        </div>
+    </div>
+    <div class="row" *ngIf="UserDetail.role =='Scanner'">
+        <div class="col selected">
+            <a href="/scanned-product" class="text-danger small font-weight-bold text-decoration-none">
+                <p class="h4 m-0"><i class="feather-list text-danger"></i></p>
+                Home
+            </a>
+        </div>
+
+        <div class="col bg-white rounded-circle mt-n4 px-3 py-2">
+            <div class="bg-danger rounded-circle mt-n0 shadow">
+                <a href="/scan-qr" class="text-white small font-weight-bold text-decoration-none">
+                    <i class="feather-printer"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="col">
+            <a href="/profiles" class="text-dark small font-weight-bold text-decoration-none">
+                <p class="h4 m-0"><i class="feather-user"></i></p>
+                Profile
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="form-group mt-4"> -->
+<!-- <button  type="submit" class="btn btn-success"><i class="feather-plus"></i></button> -->
+
+<!-- <button type="submit" class="btn btn-success mr-3" style="width: 120px;"> <i class="feather-save"></i>
+                                        Save</button>
+                                    <a class="btn btn-primary " routerLink="/sms-header" routerLinkActive="active">
+                                        <i class="feather-list"></i>
+                                        Back To List</a> -->
+<!-- [disabled]="!login_form.valid" -->
+<!-- </div> -->
+
+
+<!-- </div> -->
+<!-- </div> -->
